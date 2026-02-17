@@ -1,59 +1,63 @@
-# Product Specification: Beauty Accessories E-commerce (False Eyelashes & False Nails)
+# Product Specification: Beauty Accessories E-commerce (False Eyelashes, False Nails & Sheer Stockings)
 
 ## Overview
 
-We are building a modern and user-friendly e-commerce website specializing in both false eyelashes and false nails. The website will enable users to browse diverse beauty accessories, view detailed product info, add items to cart, make purchases, and manage orders. Admins can add/update inventory for **eyelashes** and **nails** and process all types of orders.
+Enhance the e-commerce platform to support a third category: sheer stockings. Users should find, shop, and admins should manage sheer stockings seamlessly alongside false eyelashes and false nails.
 
 ---
 
 ## Goals
 
-- Provide a seamless shopping experience for customers interested in both false eyelashes and false nails.
-- Allow for easy product management and order processing for both product categories.
-- Support secure payments and customer communication.
-- Mobile responsive, accessible design.
+- Provide a seamless shopping experience for customers interested in false eyelashes, false nails, and sheer stockings.
+- Allow for efficient product management and order processing for all three core product categories.
+- Support mixed-category carts and a consistent admin experience.
+- Continue supporting secure payments, mobile responsiveness, and accessibility.
 
 ---
 
 ## Target Users
 
-- Beauty-conscious consumers interested in false eyelashes and/or false nails.
-- Small beauty brands/retailers managing these product lines.
+- Beauty and fashion shoppers interested in lashes, nails, and/or sheer stockings.
+- Small brands/retailers managing these beauty/fashion products.
 
 ---
 
 ## Key Features
 
 1. **Homepage**
-   - Hero banner, featured products (from both categories), and call-to-actions.
+   - Hero banners, featured products sampled from all three categories, and clear navigation.
 
 2. **Product Catalogue**
-   - Category toggle/filter: "False Eyelashes" and "False Nails".
-   - Filters per category (e.g., eyelash style/length, nail shape/color/finish).
-   - Search, sorting (price, popularity) within and across categories.
+   - Category switcher/tabs/sidebar: "False Eyelashes", "False Nails", "Sheer Stockings".
+   - Catalogue for each category—now including stockings.
+   - Filtering/sorting per category.
+   - Stockings-specific filters: size, color, denier, style, price.
 
 3. **Product Detail Page**
-   - High-quality images, detailed description, price, category labels, reviews, Add to Cart.
+   - High-res photos, full description, price, selection for options (e.g., size/color/denier for stockings).
+   - Category label and breadcrumbs.
+   - Reviews, ratings, and Add to Cart.
 
 4. **Shopping Cart**
-   - Cart summary, adjust quantity, remove item, proceed to checkout.
+   - Supports mixed-product carts across all categories.
+   - Quantity and attribute selection visible.
 
 5. **Checkout & Payment**
-   - Address form, shipping options, payment integration (Stripe/PayPal).
+   - No change needed—system supports multi-category products.
 
 6. **Order Confirmation & Tracking**
-   - Email confirmation, order status page.
+   - As above; orders include stockings line items where applicable.
 
 7. **Admin Dashboard**
-   - Add/edit/delete eyelashes and nails.
-   - View/manage orders.
-   - Sales analytics (basic).
+   - Manage all three categories.
+   - Add/edit/delete sheer stocking products—fields: name, description, photos, SKU, price, stock, size, color, denier, tags.
+   - Manage orders, including those with multi-category products.
 
 8. **User Account (optional)**
-   - Register/login, order history.
+   - See stockings in purchase history.
 
 9. **Contact & FAQ**
-   - Contact form, answers to common questions.
+   - Expanded with shipping/care advice for stockings.
 
 ---
 
@@ -64,7 +68,8 @@ graph TD
   A[Homepage]
   B[Catalogue: Eyelashes]
   B2[Catalogue: Nails]
-  C[Product Detail: Eyelash/Nail]
+  B3[Catalogue: Stockings]
+  C[Product Detail: Eyelash/Nail/Stocking]
   D[Cart]
   E[Checkout]
   F[Order Confirmation]
@@ -74,8 +79,10 @@ graph TD
 
   A --> B
   A --> B2
+  A --> B3
   B --> C
   B2 --> C
+  B3 --> C
   C --> D
   D --> E
   E --> F
@@ -91,78 +98,73 @@ graph TD
 
 ### Shopper
 
-- As a user, I can browse false eyelashes **or** false nails by their respective styles and attributes.
-- As a user, I can view high-quality details and photos for each eyelash or nail product.
-- As a user, I can add or remove products to/from my shopping cart (mix and match types).
-- As a user, I can securely purchase both types of products in a single transaction using credit card or PayPal.
-- As a user, I receive an order confirmation email regardless of product type.
-- As a returning user, I can log in and view past orders, including both eyelashes and nails.
+- As a user, I can browse sheer stockings by size, color, style, and denier, in addition to lashes and nails.
+- As a user, I can filter stockings by relevant attributes.
+- As a user, I can view detailed images and sizing guides for stockings.
+- As a user, I can add any product type to my cart and purchase together.
+- As a user, I receive order and shipping confirmations that enumerate all product types.
 
 ### Admin
 
-- As an admin, I can add new false eyelash **and** false nail products with detailed info and images.
-- As an admin, I can edit or delete any product (lashes/nails).
-- As an admin, I can view and manage all orders.
-- As an admin, I can see sales analytics with breakdown by product category.
+- As an admin, I can add new sheer stocking products with size, color, denier, and image fields.
+- As an admin, I can manage inventory and details for lashes, nails, and stockings.
+- As an admin, I can view and manage orders by product category.
 
 ---
 
 ## UI/UX Suggestions
 
-- Modern, beauty-focused look (soft colors, high-res imagery).
-- Navigation to clearly distinguish eyelash and nail products.
-- Category-based catalogue and filtering experience.
-- Mobile-first, responsive design.
-- Quick add-to-cart and visible pricing.
-- Security and trust-building (testimonials, reviews, payment badges).
+- Update navigation (tabs or sidebar) to visually balance all three product categories.
+- Show relevant filters per category—stockings get size/color/denier selectors.
+- Stockings catalogue: use lifestyle/model imagery, fabric closeups, size info.
+- Product details: add a sizing guide/modal for stockings.
 
 ---
 
 ## Technology Recommendations
 
-- **Frontend:** React.js, Next.js, or Vue.js.
-- **Backend:** Node.js/Express or Python/Django.
-- **Database:** PostgreSQL or MongoDB.
-- **Payment:** Stripe or PayPal integration.
-- **Hosting:** Vercel, Netlify, or AWS.
-- **Optional CMS:** Sanity, Contentful.
+- **Frontend/Backend:** No changes; build upon current React/Vue/Next or Node/Django stack.
+- **Database:** Add or extend product schema for a `category` field and stocking-specific attributes.
+- **Payment/Hosting:** Continue with Stripe/PayPal and preferred web host.
 
 ---
 
 ## MVP Scope
 
-- Homepage, dual product catalogue, product detail, cart, checkout/payment, order confirmation, admin dashboard with category support.
-- Optional user authentication at launch.
-- Contact form, FAQ page.
+- Stockings: full catalogue & detail pages, filters, admin CRUD, basket/checkout support, order/conf flows.
+- Unified navigation and filter experience for all categories.
 
 ---
 
 ## Stretch Goals
 
-- Product reviews and ratings for both categories.
-- Wishlist/favorites.
-- Advanced analytics by product type.
-- Loyalty or discount system.
+- Category-specific promo banners (stockings sales, bundle offers).
+- Cross-category "Shop the Look" (suggest lashes + nails + stockings).
+- Advanced stockings filtering (material, pattern).
+- Customer reviews by category/product.
 
 ---
 
 ## Acceptance Criteria
 
-- Users can browse, view, and purchase false eyelashes and false nails in a seamless flow.
-- Admins can fully manage both product types and orders.
-- All forms validated, errors handled gracefully.
-- Secure website and transactions.
-- Mobile responsive.
+- Stockings appear as a core product category in navigation.
+- Catalogue, filtering, purchase, and admin flows support stockings.
+- Orders and confirmation workflows include stockings.
+- Mobile responsiveness, accessibility maintained sitewide.
 
 ---
 
 ## Next Steps
 
 1. Review and approve this spec.
-2. Update wireframes to include nail category/catalogue, and adapt UI as needed.
-3. Define extended product and order data models with category/tag support.
-4. Update project board and break down added features into deliverable tasks.
+2. Update or create wireframes for the new category and filters.
+3. Extend product and order data models (add stockings-related fields).
+4. Implement navigation/frontend/backend logic and admin panel CRUD forms for stockings.
+5. QA test shopper and admin flows including stockings and mixed-category baskets.
 
 ---
 
-**End of specification.**
+## Change Log
+
+- 2026-02-17: Dual category (lashes/nails) support added.
+- 2026-03-xx: Sheer stockings added as third category; catalogue, detail, filter, admin, and purchasing flows updated accordingly.
