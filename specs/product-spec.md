@@ -1,14 +1,14 @@
-# Product Specification: Beauty Accessories E-commerce (False Eyelashes, False Nails, Sheer Stockings & Facemasks)
+# Product Specification: Beauty Accessories E-commerce (False Eyelashes, False Nails, Sheer Stockings, Facemasks & Eyeliner)
 
 ## Overview
 
-Enhance the e-commerce platform to support a fourth category: facemasks. Users should be able to find, filter, shop, and admins should manage facemasks seamlessly alongside false eyelashes, false nails, and sheer stockings.
+Enhance the e-commerce platform to support a fifth core category: eyeliner. Users should be able to find, filter, shop, and admins should manage eyeliners seamlessly alongside false eyelashes, false nails, sheer stockings, and facemasks.
 
 ---
 
 ## Goals
 
-- Provide a seamless shopping experience for customers interested in false eyelashes, false nails, sheer stockings, and facemasks.
+- Provide a seamless shopping experience for customers interested in false eyelashes, false nails, sheer stockings, facemasks, and eyeliner.
 - Allow for efficient product management and order processing for all categories.
 - Support mixed-category carts and a consistent admin experience.
 - Continue supporting secure payments, mobile responsiveness, and accessibility.
@@ -17,7 +17,7 @@ Enhance the e-commerce platform to support a fourth category: facemasks. Users s
 
 ## Target Users
 
-- Beauty and fashion shoppers interested in lashes, nails, stockings, or facemasks.
+- Beauty and fashion shoppers interested in lashes, nails, stockings, facemasks, or eyeliner.
 - Small brands/retailers managing these beauty/fashion products.
 
 ---
@@ -25,16 +25,16 @@ Enhance the e-commerce platform to support a fourth category: facemasks. Users s
 ## Key Features
 
 1. **Homepage**
-   - Hero banners, featured products sampled from all four categories, and clear navigation.
+   - Hero banners, featured products sampled from all five categories, and clear navigation.
 
 2. **Product Catalogue**
-   - Category switcher/tabs/sidebar: "False Eyelashes", "False Nails", "Sheer Stockings", "Facemasks".
-   - Catalogue for each category—including facemasks.
+   - Category switcher/tabs/sidebar: "False Eyelashes", "False Nails", "Sheer Stockings", "Facemasks", **"Eyeliner"**.
+   - Catalogue for each category—including eyeliner.
    - Filtering/sorting per category.
-   - Facemasks-specific filters: material, type, color/pattern, size, layers/protection, price.
+   - **Eyeliner-specific filters**: type (Liquid, Pencil, Gel, Felt-tip, Powder, etc.), shade/color, finish (matte, gloss, shimmer, satin, etc.), waterproof (yes/no), brand, price.
 
 3. **Product Detail Page**
-   - High-res photos, full description, price, and selection for category-relevant options (e.g., size/color/layers for facemasks).
+   - High-res photos, full description, price, and selection for category-relevant options (incl. type, shade, finish, waterproof for eyeliners).
    - Category label and breadcrumbs.
    - Reviews, ratings, and Add to Cart.
 
@@ -46,18 +46,18 @@ Enhance the e-commerce platform to support a fourth category: facemasks. Users s
    - Multi-category purchasing is supported with no workflow change.
 
 6. **Order Confirmation & Tracking**
-   - Orders include facemask line items where applicable.
+   - Orders include eyeliner line items where applicable.
 
 7. **Admin Dashboard**
-   - Manage all four categories.
-   - Add/edit/delete facemask products; fields: name, description, photos, SKU, price, stock, material, type, color/pattern, size, layers/protection, tags, features.
+   - Manage all five categories, including eyeliner.
+   - Add/edit/delete eyeliner products; fields: name, description, photos, SKU, price, stock, type, shade, finish, waterproof, brand, tags, features, ingredients.
    - Manage orders, including those with multi-category products.
 
 8. **User Account (optional)**
-   - See facemasks in purchase history.
+   - See eyeliner in purchase history.
 
 9. **Contact & FAQ**
-   - Expanded with care advice for facemasks.
+   - Expanded with advice for eyeliner use, removal, and care.
 
 ---
 
@@ -70,6 +70,7 @@ graph TD
   B2[Catalogue: Nails]
   B3[Catalogue: Stockings]
   B4[Catalogue: Facemasks]
+  B5[Catalogue: Eyeliner]
   C[Product Detail: Any Category]
   D[Cart]
   E[Checkout]
@@ -82,10 +83,12 @@ graph TD
   A --> B2
   A --> B3
   A --> B4
+  A --> B5
   B --> C
   B2 --> C
   B3 --> C
   B4 --> C
+  B5 --> C
   C --> D
   D --> E
   E --> F
@@ -97,24 +100,25 @@ graph TD
 
 ---
 
-## Data Model: Facemask Example
+## Data Model: Eyeliner Example
 
 ```json
 {
-  "category": "facemasks",
-  "name": "Black Cotton Reusable Mask",
-  "images": ["mask1.jpg", "mask2.jpg"],
-  "price": 7.99,
-  "stock": 150,
+  "category": "eyeliner",
+  "name": "Perfect Line Waterproof Gel Eyeliner",
+  "images": ["eyeliner1.png", "eyeliner2.png"],
+  "price": 13.99,
+  "stock": 200,
   "attributes": {
-    "material": "Cotton",
-    "type": "Reusable",
-    "size": "Adult",
-    "layers": "3-ply",
-    "color_pattern": "Black",
-    "features": ["Adjustable ear loops", "Nose wire"]
+    "type": "Gel",
+    "shade": "Jet Black",
+    "finish": "Matte",
+    "waterproof": true,
+    "brand": "ProLash",
+    "size": "3ml",
+    "ingredients": ["Aqua", "Cetearyl Alcohol", "..."]
   },
-  "description": "Comfortable adult cotton facemask with adjustable ear loops and nose wire for a secure fit."
+  "description": "Intense color, all-day wear waterproof gel eyeliner in jet black."
 }
 ```
 
@@ -123,35 +127,35 @@ graph TD
 ## User Stories
 
 ### Shopper
-- As a user, I can browse, filter, and search facemasks by material, size, type, and color.
-- As a user, I can view facemask details, including images and all attributes, and add facemasks to cart.
-- As a user, I can purchase facemasks alongside other products.
+- As a user, I can browse, filter, and search eyeliners by type, finish, waterproof, and shade.
+- As a user, I can view eyeliner details, including images, all attributes, and add eyeliners to cart.
+- As a user, I can purchase eyeliners alongside other products in a single order.
 
 ### Admin
-- As an admin, I can add new facemask products with all relevant attributes (material, color, type, size, features, etc).
-- As an admin, I can update or delete facemask listings.
-- As an admin, I can filter or search the product catalog by category, including facemasks.
+- As an admin, I can add new eyeliner products with all relevant attributes (type, shade, finish, waterproof, brand, ingredients, size, etc).
+- As an admin, I can update or delete eyeliner listings.
+- As an admin, I can filter or search the product catalog by category, including eyeliner.
 
 ---
 
 ## UI/UX Suggestions
 
-- Main navigation shows “Facemasks” alongside other categories.
-- Filters on the facemask catalogue are immediately visible on desktop, collapsible on mobile.
-- Facemask cards styled to match other product cards for visual consistency.
+- Main navigation shows "Eyeliner" alongside other categories.
+- Filters on the eyeliner catalogue are immediately visible on desktop, collapsible on mobile.
+- Eyeliner cards styled to match other product cards for visual consistency.
 - Mobile-responsive and accessible per store baseline.
 
 ---
 
 ## Acceptance Criteria
 
-- Facemasks appear as a core product category in navigation.
-- Catalogue, filtering, purchase, and admin flows support facemasks.
-- Orders and confirmation workflows include facemasks.
+- Eyeliner appears as a core product category in navigation.
+- Catalogue, filtering, purchase, and admin flows support eyeliners.
+- Orders and confirmation workflows include eyeliners.
 - Mobile responsiveness and accessibility maintained sitewide.
-- Mixed-category cart/checkout flows handle facemasks gracefully.
-- Admins have full CRUD and management for facemasks.
-- Data model supports all facemask-specific fields.
+- Mixed-category cart/checkout flows handle eyeliners gracefully.
+- Admins have full CRUD and management for eyeliners.
+- Data model supports all eyeliner-specific fields.
 - UI/navigation/filters consistent with the rest of the app.
 
 ---
@@ -159,18 +163,18 @@ graph TD
 ## Next Steps
 
 1. Review and approve this updated spec.
-2. Update or create wireframes for the new facemask category and filters.
-3. Extend product and order data models for facemask-specific attributes.
-4. Implement navigation/ui/backend changes and admin panel CRUD for facemasks.
-5. QA test shopper and admin flows including facemasks and mixed-category baskets.
+2. Update or create wireframes for the new eyeliner category and filters.
+3. Extend product and order data models for eyeliner-specific attributes.
+4. Implement navigation/ui/backend changes and admin panel CRUD for eyeliners.
+5. QA test shopper and admin flows including eyeliners and mixed-category baskets.
 
 ---
 
 ## Change Log
-
 - 2026-02-17: Dual category (lashes/nails) support added.
 - 2026-03-xx: Sheer stockings added as third category.
 - 2026-04-xx: Facemasks added as fourth category; catalogue, detail, filter, admin, and purchasing flows updated.
+- 2026-06-xx: Eyeliner added as fifth category; navigation, catalogue, admin and catalog flows updated for eyeliner.
 
 ---
 
