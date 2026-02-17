@@ -1,40 +1,42 @@
-# Product Specification: False Eyelashes E-commerce Website
+# Product Specification: Beauty Accessories E-commerce (False Eyelashes & False Nails)
 
 ## Overview
 
-We are building a modern and user-friendly website to sell false eyelashes online. The website will enable users to browse products, view details, add items to cart, make purchases, and manage orders. Website admins can add/update inventory and process orders.
+We are building a modern and user-friendly e-commerce website specializing in both false eyelashes and false nails. The website will enable users to browse diverse beauty accessories, view detailed product info, add items to cart, make purchases, and manage orders. Admins can add/update inventory for **eyelashes** and **nails** and process all types of orders.
 
 ---
 
 ## Goals
 
-- Provide a seamless shopping experience for customers interested in false eyelashes.
-- Allow for easy product management and order processing for admins.
+- Provide a seamless shopping experience for customers interested in both false eyelashes and false nails.
+- Allow for easy product management and order processing for both product categories.
 - Support secure payments and customer communication.
-- Mobile responsive design for accessibility.
+- Mobile responsive, accessible design.
 
 ---
 
 ## Target Users
 
-- Consumers interested in beauty products, specifically false eyelashes.
-- Small beauty brands/retailers managing their inventory.
+- Beauty-conscious consumers interested in false eyelashes and/or false nails.
+- Small beauty brands/retailers managing these product lines.
 
 ---
 
 ## Key Features
 
 1. **Homepage**
-   - Hero banner, featured products, and call-to-actions.
+   - Hero banner, featured products (from both categories), and call-to-actions.
 
 2. **Product Catalogue**
-   - Category filtering, search, sorting (price, popularity).
+   - Category toggle/filter: "False Eyelashes" and "False Nails".
+   - Filters per category (e.g., eyelash style/length, nail shape/color/finish).
+   - Search, sorting (price, popularity) within and across categories.
 
 3. **Product Detail Page**
-   - High-quality images, detailed description, price, reviews, Add to Cart.
+   - High-quality images, detailed description, price, category labels, reviews, Add to Cart.
 
 4. **Shopping Cart**
-   - Cart summary, quantity update, remove item, proceed to checkout.
+   - Cart summary, adjust quantity, remove item, proceed to checkout.
 
 5. **Checkout & Payment**
    - Address form, shipping options, payment integration (Stripe/PayPal).
@@ -43,10 +45,12 @@ We are building a modern and user-friendly website to sell false eyelashes onlin
    - Email confirmation, order status page.
 
 7. **Admin Dashboard**
-   - Add/edit/delete products, view/manage orders, see sales analytics (basic).
+   - Add/edit/delete eyelashes and nails.
+   - View/manage orders.
+   - Sales analytics (basic).
 
-8. **User Account (optional, v1 can support guest checkout)**
-   - Register/login, view order history.
+8. **User Account (optional)**
+   - Register/login, order history.
 
 9. **Contact & FAQ**
    - Contact form, answers to common questions.
@@ -58,8 +62,9 @@ We are building a modern and user-friendly website to sell false eyelashes onlin
 ```mermaid
 graph TD
   A[Homepage]
-  B[Product Catalogue]
-  C[Product Detail]
+  B[Catalogue: Eyelashes]
+  B2[Catalogue: Nails]
+  C[Product Detail: Eyelash/Nail]
   D[Cart]
   E[Checkout]
   F[Order Confirmation]
@@ -68,7 +73,9 @@ graph TD
   I[Contact & FAQ]
 
   A --> B
+  A --> B2
   B --> C
+  B2 --> C
   C --> D
   D --> E
   E --> F
@@ -84,28 +91,30 @@ graph TD
 
 ### Shopper
 
-- As a user, I can browse false eyelashes by style, length, and price.
-- As a user, I can view details and photos of each product.
-- As a user, I can add or remove items from my shopping cart.
-- As a user, I can securely purchase items using my credit card or PayPal.
-- As a user, I receive an email confirmation of my order.
-- As a returning user, I can log in and view my previous orders (optional).
+- As a user, I can browse false eyelashes **or** false nails by their respective styles and attributes.
+- As a user, I can view high-quality details and photos for each eyelash or nail product.
+- As a user, I can add or remove products to/from my shopping cart (mix and match types).
+- As a user, I can securely purchase both types of products in a single transaction using credit card or PayPal.
+- As a user, I receive an order confirmation email regardless of product type.
+- As a returning user, I can log in and view past orders, including both eyelashes and nails.
 
 ### Admin
 
-- As an admin, I can add new products with detailed info and images.
-- As an admin, I can edit or delete products.
-- As an admin, I can view customer orders and update their status.
-- As an admin, I can see basic sales analytics or reports.
+- As an admin, I can add new false eyelash **and** false nail products with detailed info and images.
+- As an admin, I can edit or delete any product (lashes/nails).
+- As an admin, I can view and manage all orders.
+- As an admin, I can see sales analytics with breakdown by product category.
 
 ---
 
 ## UI/UX Suggestions
 
-- Clean, modern, beauty-focused look (soft colors, high-resolution imagery).
-- Mobile-first responsive design.
-- Quick add-to-cart buttons, visible pricing and shipping info.
-- Trust-building (testimonials, reviews, secure checkout badges).
+- Modern, beauty-focused look (soft colors, high-res imagery).
+- Navigation to clearly distinguish eyelash and nail products.
+- Category-based catalogue and filtering experience.
+- Mobile-first, responsive design.
+- Quick add-to-cart and visible pricing.
+- Security and trust-building (testimonials, reviews, payment badges).
 
 ---
 
@@ -116,42 +125,44 @@ graph TD
 - **Database:** PostgreSQL or MongoDB.
 - **Payment:** Stripe or PayPal integration.
 - **Hosting:** Vercel, Netlify, or AWS.
-- **CMS for products (optional):** Sanity, Contentful, or use internal dashboard.
+- **Optional CMS:** Sanity, Contentful.
 
 ---
 
-## MVP (Minimum Viable Product) Scope
+## MVP Scope
 
-- Homepage, product catalogue & details, cart, checkout/payment, order confirmation, admin dashboard.
-- User authentication can be optional at launch.
-- Contact form with email notifications.
+- Homepage, dual product catalogue, product detail, cart, checkout/payment, order confirmation, admin dashboard with category support.
+- Optional user authentication at launch.
+- Contact form, FAQ page.
 
 ---
 
 ## Stretch Goals
 
-- Product ratings and reviews.
+- Product reviews and ratings for both categories.
 - Wishlist/favorites.
-- Advanced analytics.
-- Loyalty points or discount system.
+- Advanced analytics by product type.
+- Loyalty or discount system.
 
 ---
 
 ## Acceptance Criteria
 
-- Users can browse, view, and purchase products end-to-end.
-- Admins can manage inventory and orders.
-- All forms validated and errors handled gracefully.
-- Website is secure (SSL, secure payment flows).
-- Website is mobile responsive.
+- Users can browse, view, and purchase false eyelashes and false nails in a seamless flow.
+- Admins can fully manage both product types and orders.
+- All forms validated, errors handled gracefully.
+- Secure website and transactions.
+- Mobile responsive.
 
 ---
 
 ## Next Steps
 
-- Wireframe key screens.
-- Define product and order data models.
-- Set up repository and project board for tasks.
-- Proceed with UI design and development iterations.
+1. Review and approve this spec.
+2. Update wireframes to include nail category/catalogue, and adapt UI as needed.
+3. Define extended product and order data models with category/tag support.
+4. Update project board and break down added features into deliverable tasks.
 
 ---
+
+**End of specification.**
