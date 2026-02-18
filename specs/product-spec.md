@@ -1,192 +1,142 @@
-# Product Specification: Beauty Accessories E-commerce (False Eyelashes, False Nails, Sheer Stockings, Facemasks, Eyeliner, Eyelash Curlers, Hair Dye)
+# Product Specification: Beauty/Fashion E-commerce – New Category: High Rise Jeans
 
 ## Overview
-
-Enhance the e-commerce platform to support an additional core category: **Hair Dye**. Users should be able to find, filter, and shop for hair dye, and admins should manage hair dye inventory seamlessly alongside existing categories: false eyelashes, false nails, sheer stockings, facemasks, eyeliner, and accessories (such as eyelash curlers).
+This is an incremental update to the platform specification, adding **High Rise Jeans** as a core, supported category. Shoppers can browse, filter, and purchase jeans with dedicated catalog and product pages; admins can fully manage jeans inventory, attributes, and sales data. This ensures the system supports continued multi-category growth, consistent workflows, and ease of catalog expansion.
 
 ---
 
 ## Goals
-
-- Provide a seamless shopping experience for customers interested in purchasing hair dye in addition to current beauty/fashion items.
-- Allow for efficient product management and order processing for hair dye alongside other categories.
-- Support mixed-category carts and a consistent admin experience.
-- Continue supporting secure payments, mobile responsiveness, and accessibility.
-
----
-
-## Target Users
-
-- Beauty and fashion shoppers interested in hair dye and related beauty/fashion products.
-- Small brands/retailers managing beauty/fashion and hair care products.
+- Enable sale and management of high rise jeans alongside all current product categories (false eyelashes, nails, sheer stockings, hair dye, accessories).
+- Provide full shopping, catalog browsing, filtering, and admin controls for the jeans category.
+- Maintain UI/UX, data model, and workflow consistency for customers and admins.
+- Continue supporting mixed-category carts, mobile responsiveness, and accessibility.
 
 ---
 
-## Key Features
+## Key Features Added
 
-1. **Homepage**
-   - Hero banners, featured products sampled from all categories, and clear navigation—including Hair Dye.
+### 1. Homepage & Navigation
+- "High Rise Jeans" shown as a main navigation tab, home featured grid, and on mobile menus.
+- Product images and spotlights featuring jeans (as with other categories).
+- Optionally include seasonal/promotional jeans banners.
 
-2. **Product Catalogue**
-   - Category switcher/tabs/sidebar: "False Eyelashes", "False Nails", "Sheer Stockings", "Facemasks", "Eyeliner", "Accessories", **"Hair Dye"**.
-   - Catalogue for each category—including hair dye.
-   - Filtering/sorting per category.
-   - **Hair Dye Filters**: color (swatch picker), brand, type (permanent, semi-permanent, temporary, root touch-up), format (cream, gel, foam, powder), ammonia-free, vegan/cruelty-free, price, rating.
+### 2. Catalog Structure
+- Jeans are a top-level selectable category in site nav and in the catalog sidebar/category list.
+- Catalog grid displays jeans with thumbnails, quick view, rating, price, and size/fit preview.
+- Filters for size, fit/style, color, brand, material, feature, price, and rating.
 
-3. **Product Detail Page**
-   - High-res photos, full description, price, and selection for color, brand, type, variant.
-   - Swatch/color picker for hair dye.
-   - Ingredients, instructions, suitability, category label and breadcrumbs.
-   - Reviews, ratings, and Add to Cart.
-
-4. **Shopping Cart**
-   - Supports mixed-product carts across all categories.
-   - Quantity and attribute selection visible per item (e.g., chosen hair dye color/type).
-
-5. **Checkout & Payment**
-   - Multi-category purchasing is supported with no workflow change.
-
-6. **Order Confirmation & Tracking**
-   - Orders include hair dye line items where applicable.
-
-7. **Admin Dashboard**
-   - Manage all categories, including hair dye.
-   - Add/edit/delete hair dye products; fields: name, color(s), brand, type, format, ammonia-free, vegan, price, stock, images, ingredients, application instructions, tags.
-   - Manage orders including those with multi-category products.
-   - Inventory tracking and category/brand/color-specific reporting for hair dye.
-
-8. **User Account (optional)**
-   - Display hair dye purchase history.
-
-9. **Contact & FAQ**
-   - Expanded with advice for hair dye selection, use, and aftercare.
-
----
-
-## Information Architecture / Site Map
-
+#### Site Map (Mermaid)
 ```mermaid
 graph TD
   A[Homepage]
-  B[Catalogue: Eyelashes]
-  B2[Catalogue: Nails]
-  B3[Catalogue: Stockings]
-  B4[Catalogue: Facemasks]
-  B5[Catalogue: Eyeliner]
-  B6[Accessories: Curlers]
-  B7[Catalogue: Hair Dye]
-  C[Product Detail: Any Category]
-  D[Cart]
-  E[Checkout]
-  F[Order Confirmation]
-  G[User Account]
-  H[Admin Dashboard]
-  I[Contact & FAQ]
-
+  B[False Eyelashes]
+  C[False Nails]
+  D[Sheer Stockings]
+  E[Hair Dye]
+  F[Accessories]
+  G[High Rise Jeans]
   A --> B
-  A --> B2
-  A --> B3
-  A --> B4
-  A --> B5
-  A --> B6
-  A --> B7
-  B7 --> C
-  B6 --> C
-  B --> C
-  B2 --> C
-  B3 --> C
-  B4 --> C
-  B5 --> C
-  C --> D
-  D --> E
-  E --> F
+  A --> C
+  A --> D
+  A --> E
+  A --> F
   A --> G
-  A --> I
-  G --> F
-  A --> H
+  G --> H1[Size]
+  G --> H2[Fit/Style]
+  G --> H3[Color]
+  G --> H4[Brand]
+  G --> H5[Material]
+  G --> H6[Features]
+  G --> H7[Price]
+  G --> H8[Rating]
 ```
 
 ---
+### 3. Filtering & Catalog UX
+- **Jeans Filters:**
+    - Size (numeric & S-3XL, depending on brand/data)
+    - Fit/Style (Skinny, Straight, Flare, Boyfriend, Wide Leg, Mom, Relaxed, etc.)
+    - Color (wash: Light, Medium, Dark, Black, White, Colored, etc.)
+    - Brand
+    - Material (cotton, stretch, organic, etc.)
+    - Features (distressed, cuffed, cropped, button fly, raw hem, etc.)
+    - Price (slider)
+    - Rating (stars)
+- Results update dynamically; filter chips/tags shown above grid.
 
-## Data Model: Hair Dye Example
+### 4. Product Detail Page
+- Multiple images, zoom, color/fit selector, detailed size chart link.
+- Title, brand, price, sale (if any), badge/promo flags (Best Seller, New, etc.).
+- In-stock status by size&color; Add to Cart; wishlist/fav button.
+- Description, material, care, features.
+- Reviews summary + full reviews section.
 
+---
+
+### 5. Admin Panel Extensions
+- Jeans added as a category in inventory/product admin.
+- Admin can add/edit/delete jeans with all attributes:
+    - Title, brand, fits/styles, size options, colors/washes, material, features, images, price, badges, salePrice, inventory per SKU, description.
+    - Batch/bulk upload (spreadsheet-style for sizes/fits); set featured or promo status.
+- Sales and inventory reporting for jeans products; filter by attribute or variant.
+
+---
+
+### 6. Data Model Addition (Example JSON)
 ```json
 {
-  "category": "hair-dye",
-  "name": "Vibrant Blue Semi-Permanent Hair Color",
-  "brand": "ColorBliss",
-  "type": "semi-permanent",
-  "formats": ["cream", "gel"],
-  "swatches": [
-    {"colorName": "Vibrant Blue", "hex": "#3B5BA6", "image": "blue.jpg"}
-  ],
-  "ammoniaFree": true,
-  "vegan": true,
-  "price": 12.95,
-  "rating": 4.6,
-  "stock": 35,
-  "images": ["main.jpg", "blue.jpg"],
-  "ingredients": "Aqua, Cetearyl Alcohol, Behentrimonium Chloride, Basic Blue 99, ...",
-  "instructions": "Apply to damp hair, leave for 20 mins...",
-  "description": "Long-lasting, bold dye. No ammonia. Vegan."
+  "id": "jean123",
+  "category": "high-rise-jeans",
+  "title": "High Rise Skinny Jeans",
+  "brand": "DenimWorks",
+  "sizes": ["24", "25", "26", "27", "28", "29", "30"],
+  "fits": ["Skinny"],
+  "colors": ["Light Wash", "Black"],
+  "material": "Cotton, 2% Elastane",
+  "features": ["Stretch", "Distressed Hem", "Cropped"],
+  "price": 54.99,
+  "salePrice": 44.99,
+  "images": ["/images/jeans/jean123a.jpg"],
+  "inventory": {
+    "24": 12,
+    "25": 7,
+    "26": 0
+  },
+  "description": "Classic high rise skinny fit with a comfortable blend for all-day wear.",
+  "badges": ["Best Seller"],
+  "rating": 4.7,
+  "numReviews": 54,
+  "createdAt": "2026-02-19"
 }
 ```
 
 ---
 
-## User Stories
+### 7. User Stories
+#### Shopper
+- As a user, I want to browse high rise jeans and filter by size, fit, color, and price.
+- As a user, I want to read reviews, see size and fit guides, and check stock for my size.
+- As a user, I can purchase jeans together with products from other categories.
 
-### Shopper
-- As a user, I can browse the Hair Dye section and view all available shades/brands.
-- As a user, I can filter by color, brand, type, etc., select a shade, and see images/ingredients.
-- As a user, I can add hair dye to my cart and purchase it with other products.
-
-### Admin
-- As an admin, I can add, edit, and remove hair dye listings with all relevant attributes.
-- As an admin, I can track inventory, manage pricing, and analyze item sales for hair dye.
-- As an admin, I can bulk upload/update hair dye SKUs and variants.
+#### Admin
+- As an admin, I want to add and manage high rise jeans inventory by all new attributes.
+- As an admin, I can edit prices, track stock, promote/badge jeans, and run reports on jeans items.
 
 ---
-
-## UI/UX Suggestions
-
-- Navigation bar shows Hair Dye as a main category; clear and visually consistent with others.
-- Hair dye filter panel with color swatches (visual selector) and brand/type toggles.
-- Dye detail page highlights shade, brand, features, application tips, and ingredients.
-- Mobile-responsive layouts for all new filter and product detail views; accessible design.
-
----
-
-## Acceptance Criteria
-
-- Hair Dye is visible in main and catalogue navigation with all relevant filters.
-- Filtering, detail, admin, cart, and checkout flows support hair dye fully.
-- Orders, reporting, and admin modules include hair dye data.
-- No regression to other core categories; workflows remain consistent.
-- Mobile responsiveness and accessibility maintained for all flows.
+### 8. Acceptance Criteria
+- [ ] High Rise Jeans visible as a top category in shop and admin views.
+- [ ] Shoppers can filter, view, and purchase jeans; all fields/filters shown.
+- [ ] Product detail, image gallery, size/fit/brand/feature display correctly for jeans.
+- [ ] Admin can perform full CRUD and reporting for jeans; inventory by size tracked per SKU.
+- [ ] Mixed-category cart/checkout ensures jeans merge with other item types.
+- [ ] All new UI/UX for jeans is responsive, accessible, and test-covered.
 
 ---
-
-## Next Steps
-
-1. Review and approve this updated spec.
-2. Update wireframes/UI to include the Hair Dye category and filter options.
-3. Extend product and order data models.
-4. Implement UI/backend/admin panel changes for hair dye.
-5. QA mixed baskets, filtering, purchase, and admin flows including hair dye.
+### 9. Next Steps
+1. Review and approve this spec update for "High Rise Jeans".
+2. Update navigation, catalog/category logic, filters, admin interfaces, and backend API/models for jeans.
+3. QA catalog, admin, and mixed-cart flows.
+4. Add jeans images/assets and promotional content if desired.
 
 ---
-
-## Change Log
-- 2026-02-17: Dual category (lashes/nails) support added.
-- 2026-03-xx: Sheer stockings added as third category.
-- 2026-04-xx: Facemasks added as fourth category.
-- 2026-06-xx: Eyeliner added as fifth category.
-- 2026-07-xx: Eyelash curlers/support for Accessories added.
-- 2026-08-xx: Hair Dye category added as main offering, with catalog, filter, admin, and purchasing support.
-
----
-
-**End of Spec Update**
-
-Visible: 0% - 100%
+**End of Spec Update: High Rise Jeans**
