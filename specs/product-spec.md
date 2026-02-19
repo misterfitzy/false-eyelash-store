@@ -1,142 +1,178 @@
-# Product Specification: Beauty/Fashion E-commerce – New Category: High Rise Jeans
+# Product Specification: Add "Lipstick" to Portfolio
 
 ## Overview
-This is an incremental update to the platform specification, adding **High Rise Jeans** as a core, supported category. Shoppers can browse, filter, and purchase jeans with dedicated catalog and product pages; admins can fully manage jeans inventory, attributes, and sales data. This ensures the system supports continued multi-category growth, consistent workflows, and ease of catalog expansion.
+Expand the e-commerce platform to support "Lipstick" as a distinct core product category alongside existing categories (False Eyelashes, False Nails, Sheer Stockings, Hair Dye, High Rise Jeans, Accessories). This includes front-end catalog experience, advanced filtering, admin inventory management, data model updates, and shopper workflows for browsing and buying lipstick.
 
 ---
 
-## Goals
-- Enable sale and management of high rise jeans alongside all current product categories (false eyelashes, nails, sheer stockings, hair dye, accessories).
-- Provide full shopping, catalog browsing, filtering, and admin controls for the jeans category.
-- Maintain UI/UX, data model, and workflow consistency for customers and admins.
-- Continue supporting mixed-category carts, mobile responsiveness, and accessibility.
+## Functional Requirements
 
----
+### 1. Catalog Navigation
+- Lipstick will appear as a top-level category in the main site navigation, homepage, and side menu.
+- Users can browse all lipsticks or filter by key attributes.
+- Lipstick products can be added to a mixed-category cart.
 
-## Key Features Added
+### 2. Lipstick Product Catalog Structure
 
-### 1. Homepage & Navigation
-- "High Rise Jeans" shown as a main navigation tab, home featured grid, and on mobile menus.
-- Product images and spotlights featuring jeans (as with other categories).
-- Optionally include seasonal/promotional jeans banners.
+#### Filters/Facets Supported:
+- **Brand**
+- **Color Family** (Reds, Pinks, Nudes, Berries, Plums, Browns, Corals, Unconventional)
+- **Finish** (Matte, Satin, Glossy, Cream, Sheer, Metallic)
+- **Form** (Bullet, Liquid, Crayon, Tube/Palette)
+- **Features** (Long-Wear, Moisturizing, Vegan, Cruelty-Free, SPF, Plumping)
+- **Price Range**
+- **Rating**
 
-### 2. Catalog Structure
-- Jeans are a top-level selectable category in site nav and in the catalog sidebar/category list.
-- Catalog grid displays jeans with thumbnails, quick view, rating, price, and size/fit preview.
-- Filters for size, fit/style, color, brand, material, feature, price, and rating.
+#### Sorting:
+- Price (Low to High, High to Low)
+- Best Sellers
+- Newest
+- Top Rated
 
-#### Site Map (Mermaid)
-```mermaid
-graph TD
-  A[Homepage]
-  B[False Eyelashes]
-  C[False Nails]
-  D[Sheer Stockings]
-  E[Hair Dye]
-  F[Accessories]
-  G[High Rise Jeans]
-  A --> B
-  A --> C
-  A --> D
-  A --> E
-  A --> F
-  A --> G
-  G --> H1[Size]
-  G --> H2[Fit/Style]
-  G --> H3[Color]
-  G --> H4[Brand]
-  G --> H5[Material]
-  G --> H6[Features]
-  G --> H7[Price]
-  G --> H8[Rating]
-```
+### 3. Product Detail Page
+- Display lipstick-specific attributes.
+- Swatch images/charts for each color option.
+- "Try it on" virtual (future/optional).
+- Full ingredient list, features (vegan, SPF, etc.), “How to use.”
+- Add to cart, out-of-stock handling.
 
----
-### 3. Filtering & Catalog UX
-- **Jeans Filters:**
-    - Size (numeric & S-3XL, depending on brand/data)
-    - Fit/Style (Skinny, Straight, Flare, Boyfriend, Wide Leg, Mom, Relaxed, etc.)
-    - Color (wash: Light, Medium, Dark, Black, White, Colored, etc.)
-    - Brand
-    - Material (cotton, stretch, organic, etc.)
-    - Features (distressed, cuffed, cropped, button fly, raw hem, etc.)
-    - Price (slider)
-    - Rating (stars)
-- Results update dynamically; filter chips/tags shown above grid.
+### 4. Admin: Lipstick Inventory Management
+- Add/Edit/Remove lipstick products, including:
+    - Multiple shades under one product (parent/child SKUs)
+    - Brand association
+    - Images per shade
+    - Finish, form, features, price, inventory, description, ingredients
+- Set visibility/featured status.
+- Reports/filters for lipstick sales, inventory low/out-of-stock alerts.
 
-### 4. Product Detail Page
-- Multiple images, zoom, color/fit selector, detailed size chart link.
-- Title, brand, price, sale (if any), badge/promo flags (Best Seller, New, etc.).
-- In-stock status by size&color; Add to Cart; wishlist/fav button.
-- Description, material, care, features.
-- Reviews summary + full reviews section.
+### 5. Data Model Extension
 
----
-
-### 5. Admin Panel Extensions
-- Jeans added as a category in inventory/product admin.
-- Admin can add/edit/delete jeans with all attributes:
-    - Title, brand, fits/styles, size options, colors/washes, material, features, images, price, badges, salePrice, inventory per SKU, description.
-    - Batch/bulk upload (spreadsheet-style for sizes/fits); set featured or promo status.
-- Sales and inventory reporting for jeans products; filter by attribute or variant.
-
----
-
-### 6. Data Model Addition (Example JSON)
+#### Lipstick Product Example (JSON)
 ```json
 {
-  "id": "jean123",
-  "category": "high-rise-jeans",
-  "title": "High Rise Skinny Jeans",
-  "brand": "DenimWorks",
-  "sizes": ["24", "25", "26", "27", "28", "29", "30"],
-  "fits": ["Skinny"],
-  "colors": ["Light Wash", "Black"],
-  "material": "Cotton, 2% Elastane",
-  "features": ["Stretch", "Distressed Hem", "Cropped"],
-  "price": 54.99,
-  "salePrice": 44.99,
-  "images": ["/images/jeans/jean123a.jpg"],
-  "inventory": {
-    "24": 12,
-    "25": 7,
-    "26": 0
-  },
-  "description": "Classic high rise skinny fit with a comfortable blend for all-day wear.",
-  "badges": ["Best Seller"],
-  "rating": 4.7,
-  "numReviews": 54,
-  "createdAt": "2026-02-19"
+  "id": "lskt-001",
+  "category": "Lipstick",
+  "brand": "Lush Lips",
+  "name": "Velvet Matte Lipstick",
+  "variants": [
+    {
+      "sku": "lskt-001-red01",
+      "shade": "Classic Red",
+      "color_family": "Red",
+      "finish": "Matte",
+      "swatch_image": "red01_swatch.png",
+      "main_image": "red01.png",
+      "inventory": 50
+    },
+    {
+      "sku": "lskt-001-nude01",
+      "shade": "Blushing Nude",
+      "color_family": "Nude",
+      "finish": "Matte",
+      "swatch_image": "nude01_swatch.png",
+      "main_image": "nude01.png",
+      "inventory": 20
+    }
+  ],
+  "form": "Bullet",
+  "features": ["Long-Wear", "Vegan"],
+  "price": 15.99,
+  "description": "A creamy, long-wear matte lipstick available in a range of shades.",
+  "ingredients": ["Candelilla Wax", "Shea Butter", "Color Pigments", "..."],
+  "rating": 4.6,
+  "is_featured": true,
+  "visible": true
+}
+```
+
+### 6. Core User Stories
+
+#### Shopper
+- As a customer, I want to filter lipstick by brand, color, finish, form, features, price, and rating.
+- As a customer, I want to view each lipstick’s shades, ingredient list, and images.
+- As a customer, I can add multiple lipstick shades (and other products) to my cart and checkout seamlessly.
+
+#### Admin
+- As a manager, I can CRUD all lipstick products & shades, including all category-specific attributes.
+- As a manager, I see inventory and can generate lipstick sales/reorder reports.
+
+---
+
+## UI/UX Requirements
+
+- Consistent navigation and styling as other core categories.
+- Category-specific filter panel on lipstick catalog page.
+- Each lipstick shade appears as a selectable swatch.
+- Ingredient and feature icons on product cards and detail page.
+- Responsive and accessible design.
+
+#### Sample Catalog Navigation (Mermaid Diagram)
+```mermaid
+graph TD
+    Home --> Catalog
+    Catalog -->|False Eyelashes| False_Eyelashes
+    Catalog -->|False Nails| False_Nails
+    Catalog -->|Sheer Stockings| Sheer_Stockings
+    Catalog -->|Hair Dye| Hair_Dye
+    Catalog -->|High Rise Jeans| High_Rise_Jeans
+    Catalog -->|Accessories| Accessories
+    Catalog -->|Lipstick| Lipstick
+    Lipstick -->|Brand Filter| Lipstick_Brand
+    Lipstick -->|Color Filter| Lipstick_Color
+    Lipstick -->|Finish Filter| Lipstick_Finish
+    Lipstick -->|Form Filter| Lipstick_Form
+    Lipstick -->|Features Filter| Lipstick_Features
+```
+---
+
+## Acceptance Criteria
+
+- [ ] Lipstick is present in all navigation locations alongside other core categories.
+- [ ] Shoppers can filter lipstick by all specified facets.
+- [ ] Lipstick products show full details, attributes, swatches, and inventory status.
+- [ ] Admins can fully manage lipstick SKUs and inventory.
+- [ ] Lipstick purchases, inventory, and reporting function identically to other categories.
+- [ ] Category, cart, and checkout flows are consistent and accessible.
+
+---
+
+## Next Steps
+
+1. **Review & Approve Specification:** Confirm lipstick attributes, filters, and UI/UX expectations.
+2. **Update UI Wireframes/Mockups** for lipstick catalog and product pages.
+3. **Update Data Models/DB Schema** to add lipstick attributes & relationships.
+4. **Implement Catalog, Admin, and Reporting Changes.**
+5. **Test Filtering, Browsing, Admin CRUD, Cart, and Checkout for Lipstick.**
+6. **Deploy and Announce Availability!**
+
+---
+
+## Change History
+
+| Date       | Change                     | By        |
+|------------|----------------------------|-----------|
+| 2026-02-19 | Add lipstick specification | misterfitzy|
+
+---
+
+## JSON Example For a Lipstick Category Filter
+```json
+{
+  "category": "Lipstick",
+  "filters": {
+    "brand": ["Lush Lips", "PoutPop", "UltraWear"],
+    "color_family": ["Red", "Pink", "Nude", "Berry", "Plum", "Brown", "Coral", "Other"],
+    "finish": ["Matte", "Satin", "Glossy", "Cream", "Sheer", "Metallic"],
+    "form": ["Bullet", "Liquid", "Crayon", "Palette"],
+    "features": ["Long-Wear", "Moisturizing", "Vegan", "Cruelty-Free", "SPF", "Plumping"],
+    "price": { "min": 5, "max": 60 },
+    "rating": { "min": 1, "max": 5 }
+  }
 }
 ```
 
 ---
 
-### 7. User Stories
-#### Shopper
-- As a user, I want to browse high rise jeans and filter by size, fit, color, and price.
-- As a user, I want to read reviews, see size and fit guides, and check stock for my size.
-- As a user, I can purchase jeans together with products from other categories.
-
-#### Admin
-- As an admin, I want to add and manage high rise jeans inventory by all new attributes.
-- As an admin, I can edit prices, track stock, promote/badge jeans, and run reports on jeans items.
+_Lipstick is now a core part of the false-eyelash-store portfolio, with elegant filtering, management, and shopping workflows._
 
 ---
-### 8. Acceptance Criteria
-- [ ] High Rise Jeans visible as a top category in shop and admin views.
-- [ ] Shoppers can filter, view, and purchase jeans; all fields/filters shown.
-- [ ] Product detail, image gallery, size/fit/brand/feature display correctly for jeans.
-- [ ] Admin can perform full CRUD and reporting for jeans; inventory by size tracked per SKU.
-- [ ] Mixed-category cart/checkout ensures jeans merge with other item types.
-- [ ] All new UI/UX for jeans is responsive, accessible, and test-covered.
-
----
-### 9. Next Steps
-1. Review and approve this spec update for "High Rise Jeans".
-2. Update navigation, catalog/category logic, filters, admin interfaces, and backend API/models for jeans.
-3. QA catalog, admin, and mixed-cart flows.
-4. Add jeans images/assets and promotional content if desired.
-
----
-**End of Spec Update: High Rise Jeans**
