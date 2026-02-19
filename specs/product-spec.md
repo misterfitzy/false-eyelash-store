@@ -17,192 +17,140 @@ The lipstick feature enables the e-commerce platform to support a sophisticated 
 - High Rise Jeans
 - Accessories
 
-### Mermaid: Category Navigation
 ```mermaid
 graph TD
-    A[Home]
-    A --> B[False Eyelashes]
-    A --> C[False Nails]
-    A --> D[Sheer Stockings]
-    A --> E[Hair Dye]
-    A --> F[High Rise Jeans]
-    A --> G[Lipstick]
-    A --> H[Accessories]
-    G --> G1[All Lipsticks]
-    G --> G2[Shop by Brand]
-    G --> G3[Shop by Color]
-    G --> G4[Lipstick Offers]
+H[Home] --> L[Lipstick]
+L --> LB[By Brand]
+L --> LC[By Color]
+L --> LF[Featured]
+L --> LN[New Arrivals]
 ```
+---
+
+## 3. Product Listing Filters & Sorting
+
+Customers can filter lipsticks by:
+| Filter          | Type         | Example Values                        |
+|-----------------|--------------|---------------------------------------|
+| Brand           | Multi-select | MAC, Revlon, Maybelline, NYX, Fenty   |
+| Color           | Multi-select | Red, Pink, Nude, Plum, Brown, etc.    |
+| Finish          | Multi-select | Matte, Cream, Satin, Gloss, Metallic  |
+| Form            | Multi-select | Bullet, Liquid, Crayon, Balm          |
+| Features        | Multi-select | Vegan, Long-wear, Waterproof, SPF     |
+| Price           | Range slider | $5-$50                                |
+| Shade name      | Text search  | e.g., “Ruby Woo”                      |
+| Only in-stock   | Checkbox     |                                       |
+
+**Sort by:** Newest, Best Seller, Price (Low–High/High–Low), Rating, A-Z
 
 ---
 
-## 3. Lipstick Catalog Filters & Sorting
+## 4. Product Detail Page Enhancements
 
-### 3.1. Shopper-Facing Filters
-
-Users can filter lipstick listings by:
-
-| Filter             | Type           | Example Values                              |
-|--------------------|----------------|---------------------------------------------|
-| Brand              | Multi-select   | MAC, Maybelline, NYX, Fenty, etc.           |
-| Color Family       | Multi-select   | Red, Pink, Nude, Brown, Plum, Purple, etc.  |
-| Finish             | Multi-select   | Matte, Cream, Gloss, Satin, Metallic, Sheer |
-| Form/Type          | Multi-select   | Bullet, Liquid, Crayon, Balm, Tint          |
-| Key Features       | Multi-select   | Long-wear, Vegan, Cruelty-free, SPF, etc.   |
-| Price Range        | Slider/range   | $5–$50                                      |
-| Customer Rating    | Minimum stars  | 1–5                                         |
-| In Stock Only      | Checkbox       |                                             |
-| Shade Name         | Search         | “Ruby Woo”                                  |
-
-### 3.2. Sorting Options
-- Newest
-- Best Selling
-- Price (Low to High, High to Low)
-- Rating (High to Low)
-- Brand (A-Z)
+For each lipstick:
+- Display parent product & shade variants (with swatch & real-time stock)
+- Images:
+  - Main product
+  - Per-shade swatch (optional on-lip/on-skin photo)
+- Details: Full ingredient list, finish, features (badges), how-to-use/care
+- CTAs: Add to cart (with shade selector), Save to Wish List
+- Reviews, Q&A, Cross-sell (recommend matching lip liner)
+- (Optional future) “Try It On” AR swatch tool
 
 ---
 
-## 4. Lipstick Product Detail Page
-
-Each lipstick product page includes:
-
-- High-res primary & alternate images (including on-lip/arm swatches per shade)
-- Shade selection and real-time inventory
-- Ingredient list
-- Finish, form, and feature tags
-- Full description and how-to-use section
-- Add to Cart and Save to Wishlist
-- Customer reviews, Q&A
-- “See it on me” (optional/roadmap: AR swatch try-on)
-- Cross-sell (“Pair with these lip liners”)
-
-#### Mermaid: Product Detail Data Flow
-```mermaid
-graph LR
-    PDP(Product Detail Page) --> Img[Swatch Images]
-    PDP --> Sh[Shade Selector]
-    PDP --> Ing[Ingredients]
-    PDP --> Tags[Finish/Form/Features]
-    PDP --> Cart[Add to Cart]
-    PDP --> Wish[Save to Wishlist]
-    PDP --> Rev[Reviews]
-```
-
----
-
-## 5. Admin Panel Enhancements (Lipstick)
+## 5. Admin Functionality
 
 Admins can:
-- Create/edit/delete lipstick SKUs with shade variants
-- Manage inventory for each shade
-- Upload/manage swatch and product images per color
-- Mark key features (vegan, waterproof, limited edition, etc.)
-- Edit price/discounts, status (in stock/out of stock/archived)
-- Bulk import/update via CSV/Excel
-- Generate sales and stock reports by brand, finish, etc.
+- Add/Edit/Delete lipstick SKUs with shades
+- Set unique price, stock, image, and barcode/SKU for each shade
+- Tag with brand, finish, product features, etc.
+- Bulk import/export via CSV
+- Run reports (stock by shade, sales by finish, etc.)
+- Set product or shade status (in stock, out of stock, draft, archived)
 
 ---
 
-## 6. Data Model Extensions
+## 6. Data Model (Example)
 
-### 6.1. Updated Lipstick Product Model (JSON Example)
 ```json
 {
-  "id": "lipstick-002",
-  "name": "Stay All Day Liquid Lipstick",
-  "brand": "Stila",
-  "form": "Liquid",
+  "id": "lip-001",
+  "name": "Velvet Matte Lipstick",
+  "brand": "Maybelline",
+  "description": "...",
   "finish": "Matte",
-  "features": ["Long-wear", "Vegan", "Transfer-proof", "SPF 15"],
-  "description": "A comfortable, long-lasting liquid lipstick...",
-  "ingredients": [
-    "Isododecane",
-    "Dimethicone",
-    "Trimethylsiloxysilicate",
-    "Synthetic Beeswax",
-    "Silica"
-  ],
+  "form": "Bullet",
+  "features": ["Vegan", "Long-wear"],
+  "ingredients": ["Ingredient 1", "Ingredient 2"],
   "shades": [
     {
-      "name": "Beso",
+      "name": "Red Supreme",
       "color_family": "Red",
-      "hex": "#A22620",
-      "image_url": ".../beso.png",
-      "stock": 12,
-      "sku": "SL-LQMAT-BESO"
+      "hex": "#b82b33",
+      "sku": "MAY-LM-RED",
+      "image_url": "https://.../red-supreme.png",
+      "stock": 22
     },
     {
-      "name": "Fiery",
-      "color_family": "Red",
-      "hex": "#C6001C",
-      "image_url": ".../fiery.png",
-      "stock": 7,
-      "sku": "SL-LQMAT-FIERY"
+      "name": "Bare Blush",
+      "color_family": "Nude",
+      "hex": "#e3baad",
+      "sku": "MAY-LM-NUDE",
+      "image_url": "https://.../bare-blush.png",
+      "stock": 8
     }
   ],
-  "price": 22.99,
-  "rating": 4.7,
-  "rating_count": 381,
+  "price": 10.99,
+  "rating": 4.6,
+  "rating_count": 117,
   "status": "active"
 }
 ```
 
 ---
 
-## 7. User Stories
+## 7. User Stories & Acceptance Criteria
 
-### Shopper
-- As a shopper, I can browse all lipsticks and filter by brand, shade, finish, and features.
-- As a shopper, I can easily view in-stock shades and swatches before adding to my cart.
-- As a shopper, I can compare lipsticks by price, rating, and finish.
-- As a shopper, I can view lipstick ingredient lists to support informed purchases.
+#### Shopper
+- Filter and sort lipsticks by key attributes
+- Select in-stock shades before purchase
+- Review ingredient & feature info
 
-### Admin
-- As an admin, I can upload new lipsticks and their shade variants.
-- As an admin, I manage real-time stock/shade availability.
-- As an admin, I bulk update lipstick inventory via spreadsheet imports.
-- As an admin, I generate lipstick sales and inventory reports.
+#### Admin
+- Manage lipstick/shade lifecycle and stock
+- Handle data in bulk
+- Generate sales/inventory reports
 
----
-
-## 8. UI/UX Requirements
-
-- Lipstick landing page prominently displays filter pills and quick-sort.
-- Swatch selector is accessible (supports keyboard + screen readers), with responsive layout.
-- Admin inventory/shade table supports inline editing, bulk adjustment, and quick image preview.
-- Confirmation dialogs for destructive actions (delete SKU/shade).
-- Consistent badge styling for “vegan,” “new,” limited edition.
+#### Acceptance
+- UI/UX for filtering and variants operational and tested for accessibility
+- Admin CRUD, import/export, and reporting function as intended
+- Shade-level inventory and per-shade image or swatch is consistent
 
 ---
 
-## 9. Acceptance Criteria
+## 8. UI/UX Guidelines
 
-- Lipstick category and filters are operational in the storefront and admin.
-- Each lipstick product supports multiple shades, with stock tracked per shade.
-- Swatch images/ingredient lists render accurately per selection.
-- Admin can fully CRUD lipstick SKUs and track inventory at the shade level.
-- Bulk import/export is available.
-- Shopper flow from browse → filter → add-to-cart → checkout supports lipstick with shade selection.
-
----
-
-## 10. Change History
-
-| Date         | Change                                                               | By           |
-|--------------|---------------------------------------------------------------------|--------------|
-| 2026-02-19   | Lipstick added as new product category & feature set                | misterfitzy  |
-| 2026-04-27   | Updated lipstick spec: advanced filters, shade mgmt, admin UX, data | ChatGPT PM   |
+- Immediate feedback when filtering or switching shades
+- Shade selection always visible and accessible
+- Clear badge styling for “vegan”, “new”, “limited edition”
+- Accessible swatch palette (keyboard/screen reader friendly)
+- Confirmation for destructive actions
 
 ---
 
-## 11. Next Steps
+## 9. Change History & Next Steps
 
-1. Review this updated specification for completeness and clarity.
-2. Update wireframes and UI prototypes (storefront and admin).
-3. Break down implementation tasks for development and QA.
-4. Integrate new lipstick features into the dev sprint and deploy to staging.
+| Date       | Change                                           | By       |
+|------------|--------------------------------------------------|----------|
+| 2026-02-19 | Lipstick feature initial spec                    | User     |
+| 2026-04-27 | Spec extended: filters, admin, data, UI/UX, AR   | ChatGPT  |
+
+- **Next Steps:** Review this spec, provide feedback, prepare UI drafts, assign to development.
 
 ---
 
-**End of specification.**
+**This spec will be committed to** `specs/product-spec.md` **in your repository.**
+
+---
+
