@@ -7,21 +7,24 @@ _Date: 2026-04-27_
 
 ## 1. Objective
 
-Expand lipstick catalog control and shopper experience:
-- Enable multi-attribute filtering, fast navigation, sorting
-- Provide shade/variant inventory, image, price, and badge assignment
-- Streamline admin CRUD and bulk workflows
-- Ensure accessibility and scalability for growth
+- Establish Lipstick as a core, scalable product category.
+- Enable robust, multi-facet filtering and variant (shade) management for shoppers.
+- Allow admins full CRUD, import/export (CSV/XLSX), and reporting controls.
+- Support catalog extensibility for future brand, promo, and digital experiences.
 
 ---
 
-## 2. Store Navigation Structure
+## 2. Store Navigation & Catalog Structure
 
-**Lipstick** will be a primary navigation category, with subcategories:
-- By Brand
-- By Color
-- Featured/New
-- On Sale
+Lipstick is a top-level navigation tab:
+
+- False Eyelashes
+- False Nails
+- Sheer Stockings
+- Hair Dye
+- High Rise Jeans
+- Lipstick (new/updated)
+- Accessories (eyelash curlers, removers, etc.)
 
 ```mermaid
 graph TD
@@ -29,82 +32,85 @@ graph TD
   Lipstick --> By_Brand
   Lipstick --> By_Color
   Lipstick --> Featured
+  Lipstick --> Limited_Edition
   Lipstick --> On_Sale
 ```
 
 ---
 
-## 3. Shopper Filters & Sorting
+## 3. Shopper Filtering & Sorting
 
-| Filter         | Type         | Examples                                 |
-|----------------|--------------|------------------------------------------|
-| Brand          | Multi-select | MAC, Revlon, Fenty, NYX, Maybelline      |
-| Color Family   | Multi-select | Red, Pink, Nude, Plum, Brown, Purple     |
-| Finish         | Multi-select | Matte, Satin, Cream, Gloss, Metallic     |
-| Form           | Multi-select | Bullet, Liquid, Crayon, Balm             |
-| Features       | Multi-select | Vegan, Long-wear, Cruelty-free, SPF      |
-| Price          | Slider       | $5–$50                                   |
-| Rating         | Min stars    | 1–5                                      |
-| In Stock Only  | Toggle       |                                          |
-| Shade Name     | Text search  | “Ruby Woo” etc.                          |
+| Filter         | Type         | Examples                                   |
+|----------------|--------------|--------------------------------------------|
+| Brand          | Multi-select | MAC, NYX, Maybelline, Fenty, Revlon        |
+| Color Family   | Multi-select | Red, Pink, Nude, Brown, Plum, Purple       |
+| Finish         | Multi-select | Matte, Cream, Gloss, Satin, Metallic       |
+| Form           | Multi-select | Bullet, Liquid, Crayon, Balm               |
+| Features       | Multi-select | Vegan, Long-wear, Cruelty-free, SPF        |
+| Price Range    | Slider       | $5–$50                                     |
+| Rating         | Min stars    | 1–5                                        |
+| In Stock Only  | Toggle       |                                            |
+| Shade Name     | Text search  | “Ruby Woo”, “Blushing Nude”, etc.          |
 
-Sort by: Newest, Best Seller, Price, Rating, Brand
+**Sort:** Newest, Best Seller, Price, Rating, Brand
+
+- Filter panel is sticky (desktop) and collapsible (mobile).
+- Real-time update: "X results" count after filter applied.
 
 ---
 
-## 4. Lipstick Product Page
+## 4. Product Detail Page
 
-- Shade/variant selector, disables OOS, instant per-shade image/price/badge
-- Ingredients, features, badges, description, usage, review, and Q&A
-- Add to cart: must pick shade & is in-stock
-- Cross-sell: “Pairs with” recommendations (lip liner, accessories)
+- Visual, accessible shade picker (disables out-of-stock)
+- Per-shade image, ingredient list, badges/feature tags, cross-sell area
+- Add to Cart (requires in-stock shade), Wishlist, Reviews, Q&A
+- All variant data (image, price, badges) updates on shade selection
 
 ---
 
 ## 5. Admin Features
 
-Admins can:
-- Full CRUD for lipstick products and shades (with images, price, SKU, inventory)
-- CSV/XLSX bulk import/export for all fields
-- Bulk tagging, sales/feature badging, schedule promotions
-- Activate, deactivate, or feature any SKU or shade
-- Generate and export reports by lipstick, shade, or feature
+- CRUD lipstick and all shade variants (with image, price, SKU, inventory, badges)
+- Bulk CSV/XLSX import/export for all lipstick/shade data
+- Tag with brand, finish, feature, sale/limited/featured/hidden status
+- Bulk activate/deactivate, badge, or promote SKUs/shades
+- Inventory/sales/status reporting by lipstick, shade, or tag
 
 ---
 
-## 6. Data Model (Example)
+## 6. Data Model Example
 
 ```json
 {
-  "id": "lip-202",
-  "name": "Matte Luxe Long-Wear",
-  "brand": "NYX",
+  "id": "lipstick-340",
+  "name": "Luxe Stay Velvet",
+  "brand": "Fenty",
   "form": "Liquid",
   "finish": "Matte",
-  "features": ["Vegan", "Long-wear"],
-  "description": "Comfort-matte, stays all day.",
+  "features": ["Vegan", "Long-wear", "SPF 15"],
+  "description": "High pigment, never-dry velvet matte.",
   "ingredients": ["Ingredient A", "Ingredient B"],
   "shades": [
     {
-      "name": "Fire Red",
+      "name": "Cherry Power",
       "color_family": "Red",
       "hex": "#B0171F",
-      "sku": "NYX-LUXE-RED",
-      "image_url": ".../fire-red.png",
-      "stock": 21
+      "sku": "FEN-LUXE-RED",
+      "image_url": ".../cherry-power.png",
+      "stock": 12
     },
     {
-      "name": "Cocoa Silk",
-      "color_family": "Brown",
+      "name": "Bare Silk",
+      "color_family": "Nude",
       "hex": "#AD8366",
-      "sku": "NYX-LUXE-BROWN",
-      "image_url": ".../cocoa-silk.png",
-      "stock": 7
+      "sku": "FEN-LUXE-NUDE",
+      "image_url": ".../bare-silk.png",
+      "stock": 10
     }
   ],
-  "price": 14.49,
-  "rating": 4.7,
-  "rating_count": 184,
+  "price": 17.99,
+  "rating": 4.8,
+  "rating_count": 193,
   "status": "active"
 }
 ```
@@ -114,32 +120,33 @@ Admins can:
 ## 7. Acceptance Criteria
 
 **Shopper**
-- All filter and sort functions work as specified
-- Only in-stock variants are cart-enabled, all data accurate
-- Product, shade selection, and images are accessible
+- Can filter, search, and add only in-stock lipstick shade to cart.
+- All shade information (image, badges, ingredient, price) is current/accurate.
 
 **Admin**
-- Lipstick and shade CRUD, tagging/editing via UI and import/export
-- Catalog matches filtering, badges, and variants for shopper UX
-- Reporting provides stock/sales/feature breakdowns for lipstick/shades
+- Full CRUD and import/export for all lipstick/shade fields.
+- Badging, catalog tagging, and activation consistent with shopper UI.
+- All reporting/inventory tracking works for lipstick/catalog and shade/variant.
 
 ---
 
 ## 8. UI/UX
 
-- Sticky/collapsible filter panel (mobile-friendly)
-- Swatch selector always visible, instant image/badge/stock update
-- All actions and components accessible (WCAG 2.1 AA+)
-- Admin portal supports quick bulk edit, safety checks, CSV validation
+- Sticky/collapsible filter bar; real-time “X results” count
+- Swatch selector: always accessible, instant image/info update
+- Badges, ingredient, and price per-shade show prominently
+- Admin: spreadsheet-style bulk edit, import/export, inline validation
 
 ---
 
 ## 9. Next Steps
 
-1. Review and approve/amend this spec
-2. Update catalog, PDP, and admin wireframes to match flows
-3. Add relevant implementation tasks to the development backlog
+1. Approve or provide edits to the spec.
+2. Update wireframes (catalog, PDP, admin).
+3. Implement stories for lipstick portfolio changes.
 
 ---
 
-Proceeding to commit this update to specs/product-spec.md in your repository.
+**This specification will now be committed to specs/product-spec.md in your repository.**
+
+Pushing the update now.
