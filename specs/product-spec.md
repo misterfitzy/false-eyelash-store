@@ -1,150 +1,164 @@
-# Product Specification Update: Ladies Footballs Category
-_Repository: [false-eyelash-store](https://github.com/misterfitzy/false-eyelash-store)_  
-_Spec Path: specs/product-spec.md_  
-_Date: 2026-04-27_
+# Product Specification Update: Addition of "Ladies Soaps" Category
+
+**Repository:** [false-eyelash-store](https://github.com/misterfitzy/false-eyelash-store)  
+**Specification File:** `specs/product-spec.md`  
+**Date:** 2026-02-21  
+**Author:** Product Manager (AI)
 
 ---
 
-## 1. Objective
+## Overview
 
-- Add "Ladies Footballs" as a prominent new category to the store.
-- Ensure discoverability, robust filtering, and seamless purchasing for shoppers.
-- Enable complete admin management for all Ladies Footballs SKUs and attributes.
-- Maintain UX consistency, accessibility, and mobile responsiveness.
-- Ensure extensibility for future sporting goods or related categories.
+This document outlines the update to expand the **false-eyelash-store** e-commerce platform by adding "Ladies Soaps" as a dedicated product category. The goal is to extend the store’s catalog, offering shoppers high-quality soaps targeted at women, and to ensure a best-in-class browsing and purchasing experience. This update builds upon the store’s flexible catalog structure and admin features established for categories like False Eyelashes, False Nails, Hair Dye, Stockings, Lipstick, High Rise Jeans, Accessories, and Ladies Footballs.
 
 ---
 
-## 2. Store Navigation & Catalog Structure
+## 1. Goals
 
-**Ladies Footballs** is a top-level navigation tab, appearing alongside:
+- Expand the online catalog to include "Ladies Soaps" as a core, filterable category.
+- Empower users to discover, filter, and shop for soaps according to brand, scent, ingredients, and skin type.
+- Enable full admin management and reportability for soaps, ensuring efficient inventory, product information, and order handling.
+- Maintain modern e-commerce UX, accessibility, and mobile responsiveness.
+
+---
+
+## 2. Catalog & Navigation Structure
+
+**Add "Ladies Soaps" as a top-level category alongside:**
 - False Eyelashes
 - False Nails
 - Sheer Stockings
+- Lipstick
 - Hair Dye
 - High Rise Jeans
-- Lipstick
-- Accessories (eyelash curlers, removers, etc.)
-- **Ladies Footballs** _(new)_
+- Ladies Footballs
+- Accessories
 
+### ![Mermaid Diagram: Updated Catalog Structure](#)
 ```mermaid
 graph TD
-  Home --> LadiesFootballs
-  LadiesFootballs --> By_Brand
-  LadiesFootballs --> By_Size
-  LadiesFootballs --> By_Color
-  LadiesFootballs --> Featured
-  LadiesFootballs --> On_Sale
+  Catalog --> "False Eyelashes"
+  Catalog --> "False Nails"
+  Catalog --> "Sheer Stockings"
+  Catalog --> "Lipstick"
+  Catalog --> "Hair Dye"
+  Catalog --> "High Rise Jeans"
+  Catalog --> "Ladies Footballs"
+  Catalog --> "Accessories"
+  Catalog --> "Ladies Soaps"
 ```
 
-### Catalog Navigation & Filtering
-- Ladies Footballs have a dedicated menu/category landing page.
-- Filtering and sorting options:
-  - **Brand** (Nike, Adidas, Mitre, etc.)
-  - **Size** (e.g., Size 4, Size 5)
-  - **Color/Pattern** (Pink, Floral, Custom prints)
-  - **Material** (PU, PVC, Synthetic Leather, etc.)
-  - **Features** (Lightweight, Training, Match-play, Indoor/Outdoor, etc.)
-  - **Price Range**
-  - **In Stock Only**
-- Results update in real-time; filter bar follows mobile/desktop best practices.
+### Navigation
+
+- Primary navigation includes "Ladies Soaps."
+- Homepage features soap promotions as banners/tiles.
+- Category page supports browsing, filtering, search, and direct product links.
 
 ---
 
-## 3. Product Data Model Expansion
+## 3. Filters & Product Attributes for Ladies Soaps
 
-Extend the `Product` schema:
+- **Brand** (e.g., Dove, Nivea, Body Shop, Custom)
+- **Scent/Fragrance** (e.g., Lavender, Rose, Citrus, Unscented)
+- **Type** (Bar, Liquid, Exfoliating, Moisturizing, Antibacterial)
+- **Skin Type** (Normal, Dry, Oily, Sensitive, Combination)
+- **Key Ingredients** (Shea Butter, Aloe, Charcoal, Glycerin, Essential oils, etc.)
+- **Vegan/Cruelty-free** (Yes/No)
+- **Hypoallergenic** (Yes/No)
+- **Size/Volume** (e.g., 50g, 100g, 250ml)
+- **Rating**
+- **Price Range**
+- **In Stock Only**
 
+#### Example: Soap Product Data Model (JSON)
 ```json
 {
-  "id": "string",
-  "name": "UltraGrip Ladies Football",
-  "category": "Ladies Footballs",
-  "brand": "string",
-  "description": "string",
-  "images": ["string"],
-  "price": 00.00,
-  "stock": 0,
-  "attributes": {
-    "size": "string",
-    "color_pattern": "string",
-    "material": "string",
-    "features": ["string"],
-    "usage": ["Training", "Match-play", "Indoor", "Outdoor"],
-    "weight": "number (g)"
-  }
+  "id": "soap-rosemoist-100g",
+  "category": "Ladies Soaps",
+  "brand": "RoseMoist",
+  "name": "Rose Moisturizing Bar",
+  "scent": "Rose",
+  "type": "Bar",
+  "skin_type": ["Dry", "Normal"],
+  "ingredients": ["Rose Extract", "Shea Butter"],
+  "vegan": true,
+  "cruelty_free": true,
+  "hypoallergenic": false,
+  "size": "100g",
+  "price": 3.99,
+  "rating": 4.7,
+  "in_stock": true,
+  "images": ["/images/soaps/rosemoist-100g-front.jpg"]
 }
 ```
 
 ---
 
-## 4. Product Detail Page Requirements
+## 4. Admin & Management
 
-- All specific attributes displayed (size, color, material, features, images, usage).
-- Alt text for accessibility on all images.
-- Add to Cart, Wishlist, Reviews/Q&A integration.
-- Display of relevant badges (e.g., Best Seller, New Arrivals, On Sale).
-
----
-
-## 5. Admin Management Features
-
-- Full CRUD for Ladies Footballs and all football-specific attributes.
-- Bulk import/export (CSV/XLSX) of product data.
-- Admin filter management (add/remove size, color, material, feature, brand values).
-- Real-time inventory tracking and sales reporting for the new category.
-- Assignment of badges (e.g., Featured, New, Hidden, etc.).
+- **CRUD** for soap products (add/edit/delete/clone).
+- Batch import/export (CSV/Excel/JSON).
+- Bulk update for attributes (e.g., price, stock, tags).
+- Inventory & reorder alerts based on stock thresholds.
+- Reporting on sales, inventory, popularity (by brand, scent, etc.).
+- Image/media management for high-quality product displays.
+- Full support in admin dashboard reporting and product lifecycle management.
 
 ---
 
-## 6. User Stories & Flows
+## 5. User Stories
 
-**Shopper**
-- As a shopper, I can find Ladies Footballs in the main navigation and browse them easily.
-- I can filter, view, and add Ladies Footballs to the basket along with other products.
-- I see all football attributes and care info before I buy.
+### Shopper
 
-**Admin**
-- As an admin, I can create, edit, publish, and manage footballs and all attributes.
-- I can use bulk tools to update stock, import new products, or revise attributes/filters.
+- As a shopper, I can browse and filter Ladies Soaps by brand, scent, skin type, and type to find suitable products.
+- As a shopper, I can view soap details, ingredients, and recommendations for my skin type.
+- As a shopper, I can add soaps to my cart and purchase alongside other beauty and fashion items.
+- As a shopper, I can view reviews and ratings for soaps.
+- As a shopper, I can search for specific soap brands or scents from the main search bar.
 
----
+### Admin
 
-## 7. Acceptance Criteria
-
-- [ ] Ladies Footballs tab appears in top navigation, is browseable/searchable.
-- [ ] Category supports catalog filtering (size, color, brand, etc.) and sorting.
-- [ ] Product detail pages for footballs show all required attributes, images, badges, and accessibility features.
-- [ ] Football SKUs manageable via admin interface, with import/export and reporting.
-- [ ] Mixed-category checkout works as expected (football + lashes, etc.).
-- [ ] Full mobile-responsiveness and accessibility for all interfaces updated.
+- As an admin, I can add new soap SKUs with full attribute support.
+- As an admin, I can manage stock and receive low inventory alerts for soaps.
+- As an admin, I can generate sales and inventory reports filtered by soap category or attribute.
+- As an admin, I can bulk update product info and assets easily.
 
 ---
 
-## 8. Visual Structure (Mermaid Candidate)
+## 6. Acceptance Criteria
 
-```mermaid
-graph TD
-    A[Homepage]
-    A --> B{Category}
-    B --> C[False Eyelashes]
-    B --> D[False Nails]
-    B --> E[Sheer Stockings]
-    B --> F[Accessories]
-    B --> G[Lipstick]
-    B --> H[Ladies Footballs]
-    H --> I[Football List]
-    I --> J[Product Details]
-```
+- "Ladies Soaps" is visible as a category in main navigation, search, and home promotions.
+- Users can browse, filter, and search within the soaps category using all supported filters.
+- Product detail pages show all relevant soap attributes, images, price, and stock status.
+- Soaps can be easily managed (CRUD, batch import/export, reporting) by admins in the dashboard UI.
+- All flows are mobile responsive and accessible (e.g., WCAG AA level).
+- Mixed-category carts and checkout are supported.
+- All catalog, shopping, and admin flows involving soaps meet existing performance and security standards.
 
 ---
 
-## 9. Next Steps
+## 7. UI/UX Recommendations
 
-1. Approve/approve edits to this spec.
-2. Update wireframes and UI assets for Ladies Footballs.
-3. Implement supporting feature stories and integration tests.
+- Filter panel for soap-specific attributes (scents as color chips, skin type as icons, etc.).
+- High-resolution product photography with zoom and alternative views.
+- Ingredient pop-overs on product cards.
+- “Shop By Skin Type” and “Trending Scents” quick filters.
+- Accessible UI components (ARIA, keyboard nav).
+- Consistency with existing store UI for cross-category shopping.
 
 ---
 
-**Added by product team on 2026-04-27 for immediate implementation.**
+## 8. Next Steps
+
+1. **Review/approve** this specification.
+2. Update wireframes/UI mockups to show soap category and new filter panel.
+3. Begin implementation: product model update, catalog UI, admin dashboard.
+4. Write and execute test cases (shopper & admin).
+5. Curate & import initial soap SKUs/assets.
+
+---
+
+*Committed on: 2026-02-21  
+For feedback, further breakdowns, or wireframe examples, please contact the Product Manager.*
+
+---
