@@ -1,4 +1,4 @@
-# Product Specification Update: Addition of "Ladies Soaps" Category
+# Product Specification Update: Addition of "Pop Socks" Category
 
 **Repository:** [false-eyelash-store](https://github.com/misterfitzy/false-eyelash-store)  
 **Specification File:** `specs/product-spec.md`  
@@ -9,22 +9,22 @@
 
 ## Overview
 
-This document outlines the update to expand the **false-eyelash-store** e-commerce platform by adding "Ladies Soaps" as a dedicated product category. The goal is to extend the store’s catalog, offering shoppers high-quality soaps targeted at women, and to ensure a best-in-class browsing and purchasing experience. This update builds upon the store’s flexible catalog structure and admin features established for categories like False Eyelashes, False Nails, Hair Dye, Stockings, Lipstick, High Rise Jeans, Accessories, and Ladies Footballs.
+This update expands the **false-eyelash-store** e-commerce platform by introducing "Pop Socks" as a dedicated core product category. The goal is to offer shoppers access to a stylish and practical sock category, feature robust catalog and filtering capability, and enable comprehensive admin management—consistent with prior expansions such as Ladies Soaps, Ladies Footballs, High Rise Jeans, Hair Dye, and Accessories.
 
 ---
 
 ## 1. Goals
 
-- Expand the online catalog to include "Ladies Soaps" as a core, filterable category.
-- Empower users to discover, filter, and shop for soaps according to brand, scent, ingredients, and skin type.
-- Enable full admin management and reportability for soaps, ensuring efficient inventory, product information, and order handling.
-- Maintain modern e-commerce UX, accessibility, and mobile responsiveness.
+- Add "Pop Socks" as a primary, filterable catalog category.
+- Empower users to discover, filter, and shop for pop socks by brand, pattern, size, type, and features.
+- Enable full admin management, data import/export, and reporting for pop sock SKUs.
+- Maintain best-practice e-commerce UX, accessibility, and mobile responsiveness across the platform.
 
 ---
 
 ## 2. Catalog & Navigation Structure
 
-**Add "Ladies Soaps" as a top-level category alongside:**
+"Pop Socks" are displayed as a top-level category alongside:
 - False Eyelashes
 - False Nails
 - Sheer Stockings
@@ -32,63 +32,66 @@ This document outlines the update to expand the **false-eyelash-store** e-commer
 - Hair Dye
 - High Rise Jeans
 - Ladies Footballs
+- Ladies Soaps
 - Accessories
 
-### ![Mermaid Diagram: Updated Catalog Structure](#)
+### Mermaid Diagram: Catalog Navigation
 ```mermaid
 graph TD
-  Catalog --> "False Eyelashes"
-  Catalog --> "False Nails"
-  Catalog --> "Sheer Stockings"
-  Catalog --> "Lipstick"
-  Catalog --> "Hair Dye"
-  Catalog --> "High Rise Jeans"
-  Catalog --> "Ladies Footballs"
-  Catalog --> "Accessories"
-  Catalog --> "Ladies Soaps"
+  Home --> "False Eyelashes"
+  Home --> "False Nails"
+  Home --> "Sheer Stockings"
+  Home --> "Lipstick"
+  Home --> "Hair Dye"
+  Home --> "High Rise Jeans"
+  Home --> "Ladies Footballs"
+  Home --> "Ladies Soaps"
+  Home --> "Accessories"
+  Home --> "Pop Socks"
 ```
 
-### Navigation
-
-- Primary navigation includes "Ladies Soaps."
-- Homepage features soap promotions as banners/tiles.
-- Category page supports browsing, filtering, search, and direct product links.
+- Update site navigation, search, and all-category pages to include "Pop Socks."
+- Enable homepage and promotional placements for Pop Socks.
 
 ---
 
-## 3. Filters & Product Attributes for Ladies Soaps
+## 3. Filters & Product Attributes for Pop Socks
 
-- **Brand** (e.g., Dove, Nivea, Body Shop, Custom)
-- **Scent/Fragrance** (e.g., Lavender, Rose, Citrus, Unscented)
-- **Type** (Bar, Liquid, Exfoliating, Moisturizing, Antibacterial)
-- **Skin Type** (Normal, Dry, Oily, Sensitive, Combination)
-- **Key Ingredients** (Shea Butter, Aloe, Charcoal, Glycerin, Essential oils, etc.)
-- **Vegan/Cruelty-free** (Yes/No)
-- **Hypoallergenic** (Yes/No)
-- **Size/Volume** (e.g., 50g, 100g, 250ml)
-- **Rating**
-- **Price Range**
-- **In Stock Only**
+| Attribute           | Example Values                             |
+|---------------------|--------------------------------------------|
+| **Brand**           | PrettyToes, SockIt, Leggy, etc.            |
+| **Color/Pattern**   | Black, Nude, Polka-dot, Striped, Custom    |
+| **Denier/Thickness**| Ultra-sheer, 15D, Opaque                   |
+| **Size**            | One Size, Petite, Plus, S/M/L              |
+| **Material**        | Nylon, Cotton-blend, Bamboo-fibre          |
+| **Type**            | Ankle, Trainer-liner, Knee-high            |
+| **Features**        | No-show, Anti-slip, Cushioned, Seamless    |
+| **Pack Size**       | Single, 3-pack, 5-pack                     |
+| **Price Range**     | As per catalog                             |
+| **Stock Status**    | In-stock, Out-of-stock                     |
+| **Rating**          | 1-5 Stars                                  |
 
-#### Example: Soap Product Data Model (JSON)
+#### Example: Pop Sock Product Data Model (JSON)
 ```json
 {
-  "id": "soap-rosemoist-100g",
-  "category": "Ladies Soaps",
-  "brand": "RoseMoist",
-  "name": "Rose Moisturizing Bar",
-  "scent": "Rose",
-  "type": "Bar",
-  "skin_type": ["Dry", "Normal"],
-  "ingredients": ["Rose Extract", "Shea Butter"],
-  "vegan": true,
-  "cruelty_free": true,
-  "hypoallergenic": false,
-  "size": "100g",
-  "price": 3.99,
+  "id": "pop-socks-123",
+  "category": "Pop Socks",
+  "brand": "PrettyToes",
+  "name": "Cushioned Trainer-Liner Pop Socks",
+  "color": "Nude",
+  "pattern": "Plain",
+  "size": "One Size",
+  "material": "Nylon",
+  "type": "Trainer-liner",
+  "denier": "15D",
+  "features": ["No-show", "Cushioned", "Seamless"],
+  "pack_size": "3-pack",
+  "price": 5.99,
   "rating": 4.7,
-  "in_stock": true,
-  "images": ["/images/soaps/rosemoist-100g-front.jpg"]
+  "stock_status": "In-stock",
+  "images": ["/img/popsocks1.jpg"],
+  "description": "...",
+  "reviews": []
 }
 ```
 
@@ -96,69 +99,64 @@ graph TD
 
 ## 4. Admin & Management
 
-- **CRUD** for soap products (add/edit/delete/clone).
-- Batch import/export (CSV/Excel/JSON).
-- Bulk update for attributes (e.g., price, stock, tags).
-- Inventory & reorder alerts based on stock thresholds.
-- Reporting on sales, inventory, popularity (by brand, scent, etc.).
-- Image/media management for high-quality product displays.
-- Full support in admin dashboard reporting and product lifecycle management.
+- **CRUD** for pop sock SKUs and all related product attributes.
+- Batch import/export, including images/media support.
+- Bulk editing for prices, pack size, or stock status.
+- Inventory and stock status alerts.
+- Sales and inventory reporting by attribute (brand, type, size, etc).
+- Image/gallery management for high-tier display.
+- Category ordering, visibility, and promotions control.
 
 ---
 
 ## 5. User Stories
 
 ### Shopper
-
-- As a shopper, I can browse and filter Ladies Soaps by brand, scent, skin type, and type to find suitable products.
-- As a shopper, I can view soap details, ingredients, and recommendations for my skin type.
-- As a shopper, I can add soaps to my cart and purchase alongside other beauty and fashion items.
-- As a shopper, I can view reviews and ratings for soaps.
-- As a shopper, I can search for specific soap brands or scents from the main search bar.
+- As a shopper, I can browse and filter Pop Socks by brand, pattern, type, material, features, pack size, and price.
+- As a shopper, I can add Pop Socks to my cart with other item types.
+- As a shopper, I can view images, detailed descriptions, and reviews for Pop Socks.
+- As a shopper, I can search for Pop Socks using the main search bar.
 
 ### Admin
-
-- As an admin, I can add new soap SKUs with full attribute support.
-- As an admin, I can manage stock and receive low inventory alerts for soaps.
-- As an admin, I can generate sales and inventory reports filtered by soap category or attribute.
-- As an admin, I can bulk update product info and assets easily.
+- As an admin, I can add, edit, delete, or batch manage Pop Sock SKUs/attributes.
+- As an admin, I can upload or manage multiple images for Pop Socks.
+- As an admin, I can generate category-specific sales/inventory reports for Pop Socks.
+- As an admin, I can receive alerts for low or out-of-stock Pop Sock items.
 
 ---
 
 ## 6. Acceptance Criteria
 
-- "Ladies Soaps" is visible as a category in main navigation, search, and home promotions.
-- Users can browse, filter, and search within the soaps category using all supported filters.
-- Product detail pages show all relevant soap attributes, images, price, and stock status.
-- Soaps can be easily managed (CRUD, batch import/export, reporting) by admins in the dashboard UI.
-- All flows are mobile responsive and accessible (e.g., WCAG AA level).
-- Mixed-category carts and checkout are supported.
-- All catalog, shopping, and admin flows involving soaps meet existing performance and security standards.
+- "Pop Socks" is visible as a main category in navigation, search, and home page.
+- Pop Socks support all standard catalog browsing, filter, and search flows.
+- Product detail pages show all relevant attributes, images, and stock status for Pop Socks.
+- Admin CRUD, import/export, and reporting fully support Pop Socks category.
+- Mixed-category cart and checkout flows are supported and tested.
+- All flows are mobile-optimized, accessible (WCAG 2.1 AA), and integrated with the existing store UI.
+- Performance and security standards fully met.
 
 ---
 
 ## 7. UI/UX Recommendations
 
-- Filter panel for soap-specific attributes (scents as color chips, skin type as icons, etc.).
-- High-resolution product photography with zoom and alternative views.
-- Ingredient pop-overs on product cards.
-- “Shop By Skin Type” and “Trending Scents” quick filters.
-- Accessible UI components (ARIA, keyboard nav).
-- Consistency with existing store UI for cross-category shopping.
+- Use high-resolution, zoomable images (flat and on-model displays for Pop Socks).
+- Offer quick-filters for pack size, pattern, features, and type.
+- Sticky/floating filters on mobile; color/pattern selection with swatches.
+- Ingredient pop-overs for specialty features (e.g., moisture-wicking fibers).
+- Maintain visual and interaction consistency with all other categories.
+- Guarantee color contrast, focus states, ARIA support for filter and add-to-cart controls.
 
 ---
 
 ## 8. Next Steps
 
-1. **Review/approve** this specification.
-2. Update wireframes/UI mockups to show soap category and new filter panel.
-3. Begin implementation: product model update, catalog UI, admin dashboard.
-4. Write and execute test cases (shopper & admin).
-5. Curate & import initial soap SKUs/assets.
+1. Approve and circulate this spec with engineering/design.
+2. Update/store wireframes for Pop Socks navigation, catalog, and product page displays.
+3. Begin technical implementation and QA planning.
 
 ---
 
 *Committed on: 2026-02-21  
-For feedback, further breakdowns, or wireframe examples, please contact the Product Manager.*
+For feedback or further breakdown, contact Product Manager.*
 
 ---
