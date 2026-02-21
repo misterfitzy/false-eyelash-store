@@ -1,146 +1,160 @@
-# Product Specification: Pink Tennis Balls Category
-
-## 1. Overview
-
-**Pink Tennis Balls** is a fully supported, filterable top-level product category for the e-commerce platform (false-eyelash-store). This document details the catalog structure, shopper/admin features, filtering, product data model, accessibility, and next steps.
+# Product Specification: Glass Glitterballs Category
+_Update for: `misterfitzy/false-eyelash-store`_
+_Spec Location: `specs/product-spec.md`_
 
 ---
 
-## 2. Catalog Structure
+## 1. Overview
 
+Add **Glass Glitterballs** as a core, shoppable, filterable product category to the store. Support full catalog and admin flows, extensibility, product data model integration, accessibility, and reporting.
+
+---
+
+## 2. Catalog & Navigation Updates
+
+- **Top-level Category:** Add "Glass Glitterballs" to the primary catalogue navigation.
+- **Menu Integration:** Include under Shop All and/or Accessories, as appropriate.
+- **Searchable:** Products in this category are indexed for store search and can be found by name, color, effect, or material.
+
+**Mermaid Diagram: Catalog Structure**
 ```mermaid
-graph TD;
-  Home --> Catalog;
-  Catalog --> False_Eyelashes;
-  Catalog --> False_Nails;
-  Catalog --> Sheer_Stockings;
-  Catalog --> Lipstick;
-  Catalog --> Hair_Dye;
-  Catalog --> High_Rise_Jeans;
-  Catalog --> Accessories;
-  Catalog --> Ladies_Soaps;
-  Catalog --> Ladies_Footballs;
-  Catalog --> Pop_Socks;
-  Catalog --> Pink_Tennis_Balls;
-  Catalog --> Glitter_Ball;
+graph TD
+  Catalog["Shop All Products"]
+  FalseEyelashes
+  FalseNails
+  SheerStockings
+  Accessories
+  HairDye
+  Lipstick
+  PopSocks
+  LadiesFootballs
+  PinkTennisBalls
+  GlassGlitterballs
+
+  Catalog --> FalseEyelashes
+  Catalog --> FalseNails
+  Catalog --> SheerStockings
+  Catalog --> Accessories
+  Catalog --> HairDye
+  Catalog --> Lipstick
+  Catalog --> PopSocks
+  Catalog --> LadiesFootballs
+  Catalog --> PinkTennisBalls
+  Catalog --> GlassGlitterballs
 ```
 
 ---
 
-## 3. Shopper Features
+## 3. Shopper Features & Filters
 
-- Pink Tennis Balls listed in catalog with own top-level category page
-- Glitter Ball listed as a top-level catalog category with a dedicated landing page
-- **Filtering Options:**
-    - **Brand** (e.g. Wilson, Slazenger, Penn, SparkleLight, PartyGlow, etc.)
-    - **Color** (Pink, Silver, Gold, Multicolour, Custom, Mixed)
-    - **Pack Size** (Single, 3-pack, 6-pack, Carton)
-    - **Ball Type** (Practice, Competition, Pressureless)
-    - **Size** (Mini, Standard, Large)
-    - **Material** (Felt, Rubber composite, Acrylic, Polyethylene, Glass, Other)
-    - **Features** (High-visibility, Extra bounce, Eco-friendly, Indoor/Outdoor, Motorized, Hanging, Remote-Controlled, Sound-Responsive)
-    - **Intended Use** (Party, Events, Home Decor, Stage)
-    - **Price** (sliding range)
-    - **Rating** (1–5 stars)
-    - **Inventory** ("In Stock Only" toggle)
-- Catalog sorting: price, rating, newest, brand
-- Product cards: add to cart, quick view, wishlist
-
-**Product detail page:**
-- Variant selector (Pack Size, Ball Type, Size, Color, Material)
-- Dynamic stock per variant
-- Display of all variant-specific features, images, descriptions
-- Product reviews, Q&A
-- Cross-sell related items
-- Video support (rotating glitter ball, light effects)
+**Shoppers can:**
+- Browse Glass Glitterballs via dedicated landing page.
+- Filter and sort by:
+  - **Color/Effect:** (e.g., Iridescent, Gold, Silver, Rainbow)
+  - **Size (Diameter):** (e.g., 30mm, 50mm, 80mm, etc.)
+  - **Base/Stand Included:** (Yes/No)
+  - **Material Quality:** (e.g., Blown Glass, Solid Glass)
+  - **Finish:** (Smooth, Faceted, Mirrored)
+  - **Brand**
+  - **In Stock**
+  - **Price Range**
+  - **Customer Ratings**
+- Use quick view, add to wishlist/cart, and see live inventory status.
+- View photos and videos for sparkle demonstration.
 
 ---
 
-## 4. Admin Features
-
-- CRUD for Pink Tennis Balls and Glitter Ball products and all variant SKUs
-- Import/export (.csv/.xlsx) of all related SKUs and attributes
-- Batch-edit: price, availability, feature tagging, inventory
-- Tagging (e.g. Bestseller, Party Must-Have, Limited Edition, Eco)
-- Reporting on sales, inventory, and feature breakdowns
-- Spreadsheet-style rapid-edit and inline validation
-- Activation/deactivation of variants/products
-- Admin-specific promo banners and badges for Glitter Ball
-- Data model validation for all attributes
-
----
-
-## 5. Product Data Model Example
+## 4. Product Data Model (Example JSON)
 
 ```json
 {
-  "id": "glitterball-silver-small",
-  "category": "Glitter Ball",
-  "brand": "SparkleLight",
-  "name": "Classic Silver Glitter Ball - Small",
-  "size": "Small",
-  "color": "Silver",
-  "material": "Acrylic",
-  "features": ["Hanging", "Sound-Responsive"],
-  "intendedUse": ["Party", "Stage"],
-  "price": 14.99,
-  "inventory": 130,
-  "rating": 4.7,
-  "images": ["/img/glitterballs/silver-small-1.jpg"],
-  "videos": ["/video/sparkle-silver-demo.mp4"],
-  "description": "A classic silver glitter ball for any party or event...",
-  "variants": [
-    {"size": "Medium", "price": 19.99, "inventory": 70},
-    {"size": "Large", "price": 29.99, "inventory": 22}
-  ],
-  "isActive": true,
-  "badges": ["Party Must-Have"]
+  "id": "ggb-1001",
+  "name": "Large Iridescent Glass Glitterball",
+  "category": "Glass Glitterballs",
+  "brand": "ShimmerCo",
+  "description": "Handcrafted glass glitterball with rainbow iridescent finish. Perfect for decor, parties, or display.",
+  "images": ["/img/ggb-1001-1.jpg", "/img/ggb-1001-2.jpg"],
+  "video": "/vids/ggb-1001-demo.mp4",
+  "color_effect": "Iridescent",
+  "diameter_mm": 80,
+  "base_stand_included": true,
+  "finish": "Smooth",
+  "material_type": "Blown Glass",
+  "stock": 12,
+  "price": 29.99,
+  "rating": 4.8,
+  "reviews": 22,
+  "tags": ["decor", "gift", "sparkle"],
+  "created_at": "2026-03-01T12:01:00Z"
 }
 ```
 
 ---
 
-## 6. Accessibility
+## 5. Admin Features
 
-- All user/admin features WCAG 2.1 AA compliant
-- Keyboard-accessible filter/variant selectors, live region feedback
-- Alt text for all images, ARIA labels for controls and data grids
-- Contrast, focus indicator, accessible error handling
-- Responsive for mobile and desktop
-
----
-
-## 7. Acceptance Criteria
-
-**Shopper:**
-- Can filter Pink Tennis Balls and Glitter Balls by any attribute, real-time updates
-- Can only add in-stock variants to cart
-- All product/variant data accurate with correct visuals and descriptions
-
-**Admin:**
-- CRUD, bulk actions, tagging, and reporting for both categories via admin dashboard and import/export
-- Inline/bulk edits robustly validated
-- Both categories managed like all core categories
-
-**Accessibility:**
-- All shopper/admin UI for both categories passes WCAG 2.1 AA checks
+- **Full CRUD:** Create, edit, remove Glass Glitterball products.
+- **Bulk Import/Export:** Support inventory management for new SKUs via CSV/Excel.
+- **Batch Editing:** Edit price, stock, attributes for multiple items.
+- **Data Validation:** Enforce correct size, material, and naming formats.
+- **Tag & Feature for Promotions:** Highlight new arrivals, bestsellers.
+- **Sales & Inventory Reports:** Filterable for Glass Glitterballs.
 
 ---
 
-## 8. Next Steps
-- [ ] Review and approve this specification
-- [ ] Send to design for wireframes (catalog, detail, admin)
-- [ ] Prepare data import templates (Pink Tennis Balls + Glitter Ball)
-- [ ] Prioritize coding/design cards for feature implementation
+## 6. Accessibility & UX
+
+- Images with alt text for all product/photo/video assets.
+- Sufficient contrast and large click targets for filter controls.
+- Full keyboard navigation for catalogs and details.
+- ARIA labels for custom controls.
+- WCAG 2.1 AA compliance for product, filter, and multimedia display.
 
 ---
 
-## 9. Change History
-- 2026-02-21: First full specification for Pink Tennis Balls, committed to repository
-- 2026-04-27: Added Glitter Ball as core, filterable product category
+## 7. User Stories
+
+**Shopper**
+- As a shopper, I can browse a dedicated Glass Glitterballs category and filter by color, size, and finish.
+- As a shopper, I can watch a video to see the ‘sparkle’ effect before purchase.
+- As a shopper, I can choose quantities and check stock status in real time.
+
+**Admin**
+- As an admin, I can bulk upload new Glass Glitterballs with images, sizes, and features.
+- As an admin, I can filter reports and inventory for only Glass Glitterballs.
+- As an admin, I can tag items for seasonal promotions or bestsellers.
 
 ---
 
-## 10. References
+## 8. Acceptance Criteria
+
+- [ ] Glass Glitterballs category visible in catalog and navigation.
+- [ ] Shopper can filter, sort, and purchase, add to wishlist/cart, and see live inventory.
+- [ ] Admin can CRUD single and multiple Glass Glitterballs, import/export, and report.
+- [ ] Meets WCAG 2.1 AA accessibility for navigation, images, multimedia.
+- [ ] Data model supports all core and custom attributes described.
+- [ ] Can exist in a mixed-category cart/checkout with other items.
+
+---
+
+## 9. Next Steps
+
+- **UI/UX:** Update wireframes to accommodate new filters, product features, and navigation.
+- **Design:** Create icons/images for Glass Glitterballs.
+- **Content:** Write initial product copy and acquire demo media.
+- **Dev/QA:** Implement as per above, and validate with acceptance tests.
+
+---
+
+_This completes the formal integration of "Glass Glitterballs" as a category in your e-commerce product spec._
+
+---
+
+## 10. Change History
+- 2026-04-27: Added Glass Glitterballs as a core, filterable product category
+
+---
+
+## 11. References
 - [GitHub: misterfitzy/false-eyelash-store](https://github.com/misterfitzy/false-eyelash-store)
 - Spec location: `specs/product-spec.md`
