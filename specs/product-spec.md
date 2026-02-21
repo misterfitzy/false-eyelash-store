@@ -1,166 +1,134 @@
-# Product Specification: Novelty Cake Category
+# Product Specification: Diet Guide for Ladies
 
-## 1. Overview
-Add "Novelty Cake" as a core, filterable category in the false-eyelash-store product catalog. This category covers physical novelty cakes for occasions (e.g., birthday, retirement, holidays) with advanced filtering, robust admin controls, WCAG 2.1 AA accessibility, detailed data modeling, and full shopper/admin features.
+## 1. Product Overview
 
----
-
-## 2. Goals
-- Enable customers to browse, filter, and purchase novelty cakes.
-- Provide advanced filtering by flavor, shape/design, occasion, allergy/suitability, size, dietary restrictions, personalization, price, and more.
-- Support admin workflows for adding, editing, tagging, reporting, and managing novelty cakes.
-- Ensure all flows meet accessibility requirements.
+The **Diet Guide for Ladies** is a responsive web application that empowers women to achieve their dietary and wellness goals. It provides personalized meal plans, healthy recipes, trackable nutrition goals, and vetted advice specific to women's life stages and health objectives.
 
 ---
 
-## 3. Shopper Features
-- **Category navigation:** "Novelty Cake" visible in catalog; subcategories by occasion, flavor, etc.
-- **Advanced filtering:** By flavor, shape, size, dietary needs (vegan, gluten-free, nut-free, etc.), serving count, color/design, occasion, personalized/not, price, rating, availability.
-- **Sorting:** By newest, price, rating, bestsellers.
-- **Product detail page:** Gallery, zoom, personalization options (text/photo upload), allergy & dietary info, reviews/q&a.
-- **Variant selector:** Choose size, flavor, inscription.
-- **Live inventory & delivery dates**
-- **Wishlist/Save for later**
-- **FAQ on shelf life, storage, allergens**
-- **Review and Q&A**
+## 2. Target Users
+
+- Women aged 18-60
+- Primary goals: wellness, weight loss, weight gain, fitness, special conditions (e.g., pregnancy, menopause, PCOS, etc.)
+- Comfort with digital solutions; varying nutrition knowledge
 
 ---
 
-## 4. Admin Features
-- **CRUD for Novelty Cake products and variants**
-- **Bulk import/export (CSV, XLSX)**
-- **Batch editing for price, stock, availability**
-- **Image & asset management (multiple images, alt text)**
-- **Seasonal/event tagging (Christmas, Graduation, etc.)**
-- **Promotional tagging**
-- **Dietary/allergen attribute tagging**
-- **Sales & inventory reporting**
-- **Live/archived switching**
-- **Validation (required fields, image format/sizing, allergy info)**
-- **Rapid-edit for common fields**
+## 3. Core Features
+
+### A. Personalized Diet Plans
+- Intake: age, height, weight, dietary preferences (vegan, vegetarian, gluten-free), allergies, health goals
+- Output: customizable meal plans, dynamic adjustment (e.g., “swap meal”)
+- Macronutrient targets and portion suggestions
+
+### B. Recipe Library
+- Curated, filterable recipes by meal, cuisine, prep time, dietary restriction
+- Nutritional breakdown (calories, protein, fat, fiber, etc.)
+
+### C. Nutrition Tracking
+- Daily/weekly progress dashboard
+- Input foods eaten, sync with meal plan, visualizations (charts, streaks)
+
+### D. Educational Content
+- Science-backed articles, FAQs, mythbusting
+- Guides for common women’s health conditions (PMS, menopause, pregnancy, PCOS, etc.)
+
+### E. Community & Support (Phase 2)
+- Optional: Q&A forum, group challenges, share progress
 
 ---
 
-## 5. Catalog Navigation & Filtering [Mermaid Diagram]
+## 4. User Stories
+
+**As a new user:**
+- I can sign up and set my health goal (e.g., tone up, lose weight, hormone balance).
+- I can specify dietary restrictions and allergies.
+- I can receive a tailored meal plan instantly.
+
+**As a returning user:**
+- I can view and swap upcoming meals for alternatives.
+- I can log my food, view my progress, and see how I'm tracking toward my goal.
+- I can browse and save favorite recipes.
+
+**As a content admin:**
+- I can add/edit diet plans, recipes, and articles via a secure dashboard.
+
+---
+
+## 5. Information Architecture/Site Map
+
 ```mermaid
 graph TD
-    A[Home] --> B[Shop]
-    B --> C1[False Eyelashes]
-    B --> C2[False Nails]
-    B --> C3[Glitterballs]
-    B --> C4[Novelty Cake]
-    C4 --> D1[Occasion]
-    C4 --> D2[Flavor]
-    C4 --> D3[Shape/Design]
-    C4 --> D4[Dietary]
-    C4 --> D5[Personalized]
-```
-
-#### Filter Examples:
-- Occasion (Birthday, Graduation, Baby Shower, Stag/Hen)
-- Flavor (Chocolate, Vanilla, Carrot, Lemon)
-- Shape/Design (Number, Character, Animal, Ball, Custom)
-- Dietary (Vegan, Nut-Free, Gluten-Free, Halal, Kosher)
-- Size/Servings (6”, 8”, Custom)
-- Color/Theme
-- Price
-- In Stock/Preorder
-
----
-
-## 6. Product Data Model (Example JSON)
-```json
-{
-  "id": "cake-001",
-  "title": "Football Pitch Birthday Cake",
-  "category": "Novelty Cake",
-  "occasions": ["Birthday", "Football Party"],
-  "flavors": ["Chocolate", "Vanilla"],
-  "shapes": ["Rectangle", "Football Pitch"],
-  "theme_colors": ["Green", "White"],
-  "serving_sizes": [
-    { "size": "Small", "servings": 8, "price": 28.99, "sku": "cake-001-sm" },
-    { "size": "Large", "servings": 18, "price": 48.99, "sku": "cake-001-lg" }
-  ],
-  "personalization": {
-    "canPersonalize": true,
-    "fields": ["message", "name", "age"]
-  },
-  "dietary_options": ["Nut-Free", "Vegetarian"],
-  "allergens": ["Egg", "Dairy", "Wheat"],
-  "images": [
-    { "url": "football-cake-sm.jpg", "alt": "Football pitch birthday cake, small" }
-  ],
-  "inventory": 3,
-  "delivery_options": ["Store Pickup", "Next-Day Delivery"],
-  "reviews": [],
-  "rating": 4.5,
-  "isActive": true,
-  "tags": ["Football", "Personalizable", "Best Seller"],
-  "admin_notes": "Photographic upload for custom orders; check allergy details at intake."
-}
+    Landing["Landing Page"]
+    Register["Sign Up / Profile Setup"]
+    Dashboard["User Dashboard"]
+    MealPlan["My Meal Plan"]
+    Recipes["Recipes Library"]
+    Tracker["Nutrition Tracker"]
+    Articles["Diet Articles"]
+    Admin["Admin Dashboard"]
+    
+    Landing --> Register
+    Register --> Dashboard
+    Dashboard --> MealPlan
+    Dashboard --> Recipes
+    Dashboard --> Tracker
+    Dashboard --> Articles
+    Admin -.-> Recipes
+    Admin -.-> MealPlan
+    Admin -.-> Articles
 ```
 
 ---
 
-## 7. Accessibility (WCAG 2.1 AA)
-- All forms field-labeled, error states
-- Color + icon coding for dietary/allergy tags
-- Keyboard navigation for filters/personalization
-- Alt text for all images
-- Sufficient contrast and scalable fonts
+## 6. Data Model (sample, extensible)
+
+### User
+- id, email, password (hashed), profile: {age, height, weight, preferences, restrictions, health goals}, favorites[], progress[]
+
+### MealPlan
+- id, user_id, start_date, days[{date, meals[]}]
+
+### Recipe
+- id, name, ingredients[], instructions, nutrition_info, tags[], prep_time, author
+
+### Article
+- id, title, body, tags[], related_conditions[], author
+
+---
+
+## 7. UX/UI Guidance
+
+- Warm, welcoming palette, inclusive photography/illustrations
+- Onboarding flow for profile setup
+- Clear CTAs (“Get Your Plan”, “Log Meal”, “Swap Recipe”)
+- Accessible forms, readable fonts, minimized cognitive load
+- Mobile-first responsive layouts
+- Dietary restriction support at every meal/recipe node
 
 ---
 
 ## 8. Acceptance Criteria
 
-**Shopper:**
-- Can filter by all major cake attributes.
-- Personalize cake for eligible SKUs.
-- View ingredient/allergen info pre-purchase.
-- Accessibly browse, select, and check out.
-
-**Admin:**
-- Add/edit/remove cakes/variants/personalization options.
-- Batch tag for occasions, dietary, events.
-- Export sales/inventory reports filtered by cake.
-- Validate image, name, dietary/allergen for every new product.
+- Users receive instant, personalized meal plans based on input
+- Nutrition info visible, accurate, and adjustable by user
+- Recipes, plans, and articles are filterable and searchable
+- Admin can manage content via dashboard (CRUD)
+- App is mobile-friendly and WCAG 2.1 AA compliant
+- All user data is secure and private
 
 ---
 
-## 9. User Stories
+## 9. Next Steps
 
-**As a shopper:**  
-- I want to find cakes for specific occasions using filters.  
-- I want to see only cakes that suit my dietary needs.  
-- I want to personalize my cake with a message or photo.  
-- I want clear allergy information.
-
-**As an admin:**  
-- I want to add/retire cakes available for sale.  
-- I want to tag cakes for upcoming holidays or events.  
-- I want reporting on cake sales and low inventory alerts.  
-- I want to quickly update pricing and stock for cakes.
+- Review and approve full specification
+- Create wireframes/UI mockups for onboarding, meal plan, and recipe flow
+- Finalize data model and meal plan generation logic
+- Begin development sprints (MVP: personalized plans, recipes, nutrition tracker)
+- Plan for phased rollout: core features, then community/support if desired
 
 ---
 
-## 10. Next Steps
-1. Approve this updated product specification.
-2. Create/extend wireframes for the new Novelty Cake catalog & PDP features.
-3. Model data updates for cake products in backend/service.
-4. Implement catalog navigation and filtering components.
-5. Add admin CRUD, import, and batch tools for the new category.
-6. Test accessibility and workflows (shopper/admin).
-7. Review acceptance criteria via QA.
+## 10. Change Log
 
----
-
-## 11. Change Log
-- 2026-02-21: Initial Novelty Cake category specification.  
-- [Future]: Update for new regulation or feature as required.
-
----
-
-**Ready for design team review and catalog integration.**  
-
----
+- v1.0: Initial product specification, 2026-02-21
