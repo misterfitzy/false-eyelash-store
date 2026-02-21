@@ -1,4 +1,4 @@
-# Product Specification: Glass Glitterballs Category
+# Product Specification: Novelty Earrings Category
 _Update for: `misterfitzy/false-eyelash-store`_
 _Spec Location: `specs/product-spec.md`_
 
@@ -6,15 +6,15 @@ _Spec Location: `specs/product-spec.md`_
 
 ## 1. Overview
 
-Add **Glass Glitterballs** as a core, shoppable, filterable product category to the store. Support full catalog and admin flows, extensibility, product data model integration, accessibility, and reporting.
+Add **Novelty Earrings** as a core, shoppable, filterable product category to the store. Support full catalog and admin flows, extensibility, product data model integration, accessibility, and reporting.
 
 ---
 
 ## 2. Catalog & Navigation Updates
 
-- **Top-level Category:** Add "Glass Glitterballs" to the primary catalogue navigation.
+- **Top-level Category:** Add "Novelty Earrings" to the primary catalogue navigation.
 - **Menu Integration:** Include under Shop All and/or Accessories, as appropriate.
-- **Searchable:** Products in this category are indexed for store search and can be found by name, color, effect, or material.
+- **Searchable:** Products in this category are indexed for store search and can be found by name, type, theme, material, or color.
 
 **Mermaid Diagram: Catalog Structure**
 ```mermaid
@@ -30,6 +30,7 @@ graph TD
   LadiesFootballs
   PinkTennisBalls
   GlassGlitterballs
+  NoveltyEarrings
 
   Catalog --> FalseEyelashes
   Catalog --> FalseNails
@@ -41,6 +42,7 @@ graph TD
   Catalog --> LadiesFootballs
   Catalog --> PinkTennisBalls
   Catalog --> GlassGlitterballs
+  Catalog --> NoveltyEarrings
 ```
 
 ---
@@ -48,19 +50,22 @@ graph TD
 ## 3. Shopper Features & Filters
 
 **Shoppers can:**
-- Browse Glass Glitterballs via dedicated landing page.
+- Browse Novelty Earrings via dedicated landing page.
 - Filter and sort by:
-  - **Color/Effect:** (e.g., Iridescent, Gold, Silver, Rainbow)
-  - **Size (Diameter):** (e.g., 30mm, 50mm, 80mm, etc.)
-  - **Base/Stand Included:** (Yes/No)
-  - **Material Quality:** (e.g., Blown Glass, Solid Glass)
-  - **Finish:** (Smooth, Faceted, Mirrored)
+  - **Type:** Studs, Dangles, Hoops, Cuffs, Clip-ons, Sets
+  - **Theme:** Food, Animals, Holiday, Statement, Retro, Pop Culture, Custom/Text, Glitter/Gem, Other
+  - **Material:** Metal (Nickel-Free, Sterling Silver, Gold-tone), Plastic, Resin, Acrylic, Wood, Fabric
+  - **Colour:** Swatches, multi-select
+  - **Finish:** Matte, Gloss, Glitter, Pearl, Holographic
   - **Brand**
-  - **In Stock**
+  - **Closure:** Post, Hook, Clip-on, Magnetic
+  - **Hypoallergenic:** Yes/No
+  - **Featured/Trending**
   - **Price Range**
   - **Customer Ratings**
+  - **Availability:** In stock, pre-order, out of stock
 - Use quick view, add to wishlist/cart, and see live inventory status.
-- View photos and videos for sparkle demonstration.
+- View multiple images, video, 360° spins, and badges (e.g., Hypoallergenic, New).
 
 ---
 
@@ -68,24 +73,33 @@ graph TD
 
 ```json
 {
-  "id": "ggb-1001",
-  "name": "Large Iridescent Glass Glitterball",
-  "category": "Glass Glitterballs",
-  "brand": "ShimmerCo",
-  "description": "Handcrafted glass glitterball with rainbow iridescent finish. Perfect for decor, parties, or display.",
-  "images": ["/img/ggb-1001-1.jpg", "/img/ggb-1001-2.jpg"],
-  "video": "/vids/ggb-1001-demo.mp4",
-  "color_effect": "Iridescent",
-  "diameter_mm": 80,
-  "base_stand_included": true,
-  "finish": "Smooth",
-  "material_type": "Blown Glass",
-  "stock": 12,
-  "price": 29.99,
-  "rating": 4.8,
-  "reviews": 22,
-  "tags": ["decor", "gift", "sparkle"],
-  "created_at": "2026-03-01T12:01:00Z"
+  "id": "e12345",
+  "category": "Novelty Earrings",
+  "name": "Glitter Donut Dangle Earrings",
+  "brand": "FunBijoux",
+  "type": "Dangles",
+  "theme": ["Food", "Glitter"],
+  "materials": ["Polymer Clay", "Nickel-Free Metal"],
+  "colour": ["Pink", "White", "Sprinkles"],
+  "finish": "Gloss",
+  "closure": "Hook",
+  "hypoallergenic": true,
+  "description": "Whimsical donut-shaped dangle earrings with a glossy finish, lightweight and hypoallergenic.",
+  "images": [
+    "/images/earrings/donuts_1.jpg",
+    "/images/earrings/donuts_2.jpg"
+  ],
+  "videos": [
+    "/videos/earrings/donuts_demo.mp4"
+  ],
+  "badges": ["New Arrival", "Hypoallergenic"],
+  "price": 8.99,
+  "in_stock": 22,
+  "rating": 4.7,
+  "reviews_count": 17,
+  "care": "Avoid water. Store in jewelry box.",
+  "returnable": true,
+  "tags": ["gift", "valentines"]
 }
 ```
 
@@ -93,68 +107,70 @@ graph TD
 
 ## 5. Admin Features
 
-- **Full CRUD:** Create, edit, remove Glass Glitterball products.
+- **Full CRUD:** Create, edit, remove Novelty Earring products.
 - **Bulk Import/Export:** Support inventory management for new SKUs via CSV/Excel.
 - **Batch Editing:** Edit price, stock, attributes for multiple items.
-- **Data Validation:** Enforce correct size, material, and naming formats.
+- **Data Validation:** Enforce correct type, material, and naming formats.
 - **Tag & Feature for Promotions:** Highlight new arrivals, bestsellers.
-- **Sales & Inventory Reports:** Filterable for Glass Glitterballs.
+- **Sales & Inventory Reports:** Filterable for Novelty Earrings.
 
 ---
 
 ## 6. Accessibility & UX
 
-- Images with alt text for all product/photo/video assets.
-- Sufficient contrast and large click targets for filter controls.
-- Full keyboard navigation for catalogs and details.
+- Images with alt text for product/photo/video assets.
+- Sufficient contrast, large clickable filter controls, sticky filter panel (desktop), filter drawer (mobile).
+- Full keyboard navigation for catalogs and product details.
 - ARIA labels for custom controls.
-- WCAG 2.1 AA compliance for product, filter, and multimedia display.
+- WCAG 2.1 AA compliance for all earrings-related UI.
+- Upsell/cross-sell modules for related earrings and accessories.
+- Quick-add or wishlist functionality.
 
 ---
 
 ## 7. User Stories
 
 **Shopper**
-- As a shopper, I can browse a dedicated Glass Glitterballs category and filter by color, size, and finish.
-- As a shopper, I can watch a video to see the ‘sparkle’ effect before purchase.
-- As a shopper, I can choose quantities and check stock status in real time.
+- As a shopper, I can browse and filter novelty earrings by type, theme, and colour.
+- As a customer, I can filter hypoallergenic styles for sensitive skin.
+- As a shopper, I can see detailed images/videos before purchase.
+- As a customer, I can combine earrings with other items in my cart and checkout together.
 
 **Admin**
-- As an admin, I can bulk upload new Glass Glitterballs with images, sizes, and features.
-- As an admin, I can filter reports and inventory for only Glass Glitterballs.
-- As an admin, I can tag items for seasonal promotions or bestsellers.
+- As an admin, I can bulk upload or edit SKUs with all novelty earring attributes.
+- As an admin, I can filter and report on earrings inventory or sales.
+- As an admin, I can tag earrings for "New Arrival" and "Promotions." 
 
 ---
 
 ## 8. Acceptance Criteria
 
-- [ ] Glass Glitterballs category visible in catalog and navigation.
-- [ ] Shopper can filter, sort, and purchase, add to wishlist/cart, and see live inventory.
-- [ ] Admin can CRUD single and multiple Glass Glitterballs, import/export, and report.
-- [ ] Meets WCAG 2.1 AA accessibility for navigation, images, multimedia.
-- [ ] Data model supports all core and custom attributes described.
-- [ ] Can exist in a mixed-category cart/checkout with other items.
+- [ ] Novelty Earrings category visible in catalog and navigation.
+- [ ] Shopper can filter, sort, purchase, add to wishlist/cart, and see live inventory.
+- [ ] Admin can CRUD single and multiple earring SKUs, import/export, and report.
+- [ ] Mixed-category cart/checkout is seamless.
+- [ ] Meets WCAG 2.1 AA accessibility for all earrings UI.
+- [ ] Product data model supports all earring-specific attributes.
 
 ---
 
 ## 9. Next Steps
 
-- **UI/UX:** Update wireframes to accommodate new filters, product features, and navigation.
-- **Design:** Create icons/images for Glass Glitterballs.
-- **Content:** Write initial product copy and acquire demo media.
-- **Dev/QA:** Implement as per above, and validate with acceptance tests.
-
----
-
-_This completes the formal integration of "Glass Glitterballs" as a category in your e-commerce product spec._
+- **UI/UX:** Update wireframes for earrings (catalog, filters, PDP, cart).
+- **Dev:** Implement as per above and validate with acceptance tests.
+- **Design:** Create icons/images for earrings.
+- **Content:** Write product detail, acquire demo media.
+- **QA:** Confirm accessibility and filtering/reporting coverage.
 
 ---
 
 ## 10. Change History
-- 2026-04-27: Added Glass Glitterballs as a core, filterable product category
+- 2026-02-21: Added Novelty Earrings as a core, filterable product category
 
 ---
 
 ## 11. References
 - [GitHub: misterfitzy/false-eyelash-store](https://github.com/misterfitzy/false-eyelash-store)
 - Spec location: `specs/product-spec.md`
+
+_This completes the formal integration of "Novelty Earrings" as a category in your e-commerce product spec._
