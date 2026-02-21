@@ -1,148 +1,142 @@
-# Product Specification Addendum: Pink Tennis Balls
+# Product Specification: Pink Tennis Balls Category
 
-**Repository:** [`misterfitzy/false-eyelash-store`](https://github.com/misterfitzy/false-eyelash-store)
-**Spec Location:** `specs/product-spec.md`
-**Date:** 27-Apr-2026
+## 1. Overview
 
----
-
-## Overview
-
-**Pink Tennis Balls** is a new, filterable, and scalable product category for the store. This specification includes shopper and admin features, updated data models, filtering controls, admin workflows, and accessibility requirements.
+**Pink Tennis Balls** is a fully supported, filterable top-level product category for the e-commerce platform (false-eyelash-store). This document details the catalog structure, shopper/admin features, filtering, product data model, accessibility, and next steps.
 
 ---
 
-## Catalog & Navigation
-
-- Pink Tennis Balls is a top-level navigation category alongside existing top categories (e.g. False Eyelashes, False Nails, Lipstick, Footballs, Pop Socks, etc.).
+## 2. Catalog Structure
 
 ```mermaid
-graph TD
-  Catalog
-    Catalog --> False_Eyelashes
-    Catalog --> False_Nails
-    Catalog --> Hair_Dye
-    Catalog --> Sheer_Stockings
-    Catalog --> High_Rise_Jeans
-    Catalog --> Lipstick
-    Catalog --> Ladies_Soaps
-    Catalog --> Pop_Socks
-    Catalog --> Ladies_Footballs
-    Catalog --> Pink_Tennis_Balls
+graph TD;
+  Home --> Catalog;
+  Catalog --> False_Eyelashes;
+  Catalog --> False_Nails;
+  Catalog --> Sheer_Stockings;
+  Catalog --> Lipstick;
+  Catalog --> Hair_Dye;
+  Catalog --> High_Rise_Jeans;
+  Catalog --> Accessories;
+  Catalog --> Ladies_Soaps;
+  Catalog --> Ladies_Footballs;
+  Catalog --> Pop_Socks;
+  Catalog --> Pink_Tennis_Balls;
 ```
 
 ---
 
-## Shopper Features & Filters
+## 3. Shopper Features
 
-**Filter dimensions:**
-- Brand (Wilson, Slazenger, Head, Penn, etc.)
-- Color (Pink, Multi, Neon, Custom)
-- Pack Size (1, 3, 4, 6, 12, 24, etc.)
-- Ball Type (Standard, Pressureless, Championship, Training, Kids)
-- Material (Felt, Rubber, Eco, Vegan, Recycled)
-- Features (Extra Bounce, Indoor/Outdoor, Limited Edition, Custom Print)
-- In Stock Only (toggle)
-- Price Range ($ slider)
-- Rating (1–5 stars)
-
-**Sort options:** Price, Newest, Best Rated, Brand
+- Pink Tennis Balls listed in catalog with own top-level category page
+- Filter options:
+    - **Brand** (e.g. Wilson, Slazenger, Penn)
+    - **Color** (Pink, Mixed)
+    - **Pack Size** (Single, 3-pack, 6-pack, Carton)
+    - **Ball Type** (Practice, Competition, Pressureless)
+    - **Material** (Felt, Rubber composite)
+    - **Features** (High-visibility, Extra bounce, Eco-friendly, Indoor/Outdoor)
+    - **Price** (sliding range)
+    - **Rating** (1–5 stars)
+    - **Inventory** ("In Stock Only" toggle)
+- Catalog sorting: price, rating, newest, brand
+- Product cards: add to cart, quick view, wishlist
 
 **Product detail page:**
-- Gallery images (angles, close-up, packaging, on-court)
-- Badges: “Limited Edition”, “Charity” etc. (if applicable)
-- Specs table: size, material, weight, bounce rating
-- Bulk discounts by pack size
-- Per-pack and per-ball inventory status
-- Related items cross-sell (e.g., rackets, sweatbands)
-- Shopper reviews, ratings, and Q&A
-- Accessible swatch and pack selectors
-
-**Mobile & accessibility:**
-- Fully mobile and accessible; all filters and selectors WCAG 2.1 AA compliant
-- Alt text for all images
-- Large tap targets for variant/pack picking
+- Variant selector (Pack Size, Ball Type)
+- Dynamic stock per variant
+- Display of all variant-specific features, images, descriptions
+- Product reviews, Q&A
+- Cross-sell related items
 
 ---
 
-## Admin Features
+## 4. Admin Features
 
-- Full CRUD for Pink Tennis Ball SKUs and variants (pack sizes, color, ball type, features)
-- Bulk import/export via CSV/XLSX template with validation
-- Spreadsheet-style batch editing for inventory and pricing
-- Inline image and media management
-- Tag as “Featured”, “Limited”, “Promo”, “Charity”, etc.
-- Product activation/deactivation
-- Inventory and sales analytics (by pack size, color, type)
-- Review moderation and reporting
-- Min/max inventory alerts
+- CRUD for Pink Tennis Balls products and all variant SKUs
+- Import/export (.csv/.xlsx) of all related SKUs and attributes
+- Batch-edit: price, availability, feature tagging, inventory
+- Tagging (e.g. Bestseller, Limited Edition, Eco)
+- Reporting on sales, inventory, and feature breakdowns
+- Spreadsheet-style rapid-edit and inline validation
+- Activation/deactivation of variants/products
 
 ---
 
-## Data Model Example
+## 5. Product Data Model Example
 
 ```json
 {
-  "id": "tennisball-pink-4pk-001",
-  "category": "Pink Tennis Balls",
+  "id": "pink-tennis-ball-001",
+  "name": "Wilson Pink Tennis Balls",
   "brand": "Wilson",
-  "pack_size": 4,
-  "ball_type": "Standard",
-  "color": "Pink",
-  "features": ["Limited Edition", "Extra Bounce", "Outdoor"],
-  "material": "Felt",
-  "price": 12.99,
-  "status": "active",
-  "inventory": 42,
-  "image_urls": ["..."],
-  "ratings": 4.8,
-  "rating_count": 14,
-  "badges": ["Limited Edition"],
-  "description": "Wilson Pink Tennis Balls, perfect for both fun and serious play. 4-Pack."
+  "description": "Premium felt, high-visibility pink tennis balls. Ideal for all courts.",
+  "variants": [
+    {
+      "sku": "WIL-PINK-3PK",
+      "pack_size": "3-pack",
+      "ball_type": "Competition",
+      "material": "Felt",
+      "features": ["High-visibility", "Eco-friendly"],
+      "color": "Pink",
+      "price": 8.99,
+      "stock": 24,
+      "active": true
+    }
+  ],
+  "images": [
+    "https://example.com/img/wilson-pink-3pk-1.jpg",
+    "https://example.com/img/wilson-pink-3pk-2.jpg"
+  ],
+  "rating": 4.6,
+  "rating_count": 82,
+  "tags": ["Bestseller", "Competition"],
+  "status": "active"
 }
 ```
 
 ---
 
-## User Stories & Acceptance Criteria
+## 6. Accessibility
 
-**Shopper**
-- As a shopper, I can browse and filter Pink Tennis Balls using all available dimensions
-- As a shopper, I can see badges for limited/special editions and out-of-stock clearly
-- As a shopper, I can view multiple images, full details, and reviews
-- As a shopper, I can only add in-stock variants to cart
-
-**Admin**
-- As an admin, I can add/edit/delete tennis ball SKUs and all variant attributes
-- As an admin, I can import/export tennis balls in bulk with validation checks
-- As an admin, I can report on inventory and sales by color, pack, and type
-- As an admin, I can tag and feature SKUs
+- All user/admin features WCAG 2.1 AA compliant
+- Keyboard-accessible filter/variant selectors, live region feedback for variant selection and stock
+- Alt text for all images, ARIA labels for controls and data grids
+- Clear error handling and warnings throughout bulk/batch actions
 
 ---
 
-## Accessibility & UI Guidance
+## 7. Acceptance Criteria
 
-- All filter panels and PDP controls are WCAG 2.1 AA+
-- Distinct color contrasts for pink imagery vs. white backgrounds
-- Alt text for all shots
-- Fully responsive and mobile optimized
+**Shopper:**
+- Can filter Pink Tennis Balls by any attribute, and results update in real-time
+- Can only add in-stock variants to cart
+- All product/variant data accurate with correct visuals and descriptions
 
----
-
-## Change History
-- 27-Apr-2026: Add Pink Tennis Balls as a top-level category
-- 20-Feb-2026: Add Ladies Footballs
-- 21-Feb-2026: Add Pop Socks Mark 2
-- 19–27-Feb-2026: Lipstick spec & data model enhancements
-- 18-Feb-2026: High Rise Jeans, Hair Dye added
-- 17-Feb-2026: False Nails added; store design initiated
+**Admin:**
+- CRUD, bulk actions, tagging, and reporting available via admin dashboard and import/export
+- Inline/bulk edits are robustly validated
+- Pink Tennis Balls can be managed like all core categories
 
 ---
 
-## Next Steps
-- [ ] Update wireframes for Pink Tennis Balls category and item detail pages
-- [ ] Design initial import spreadsheet for tennis ball SKUs
-- [ ] Prioritize features in dev implementation backlog
+## 8. Next Steps
 
+- [ ] Review and approve this specification
+- [ ] Send to design for wireframes (catalog, detail, admin)
+- [ ] Prepare data import templates
+- [ ] Prioritize coding/design cards for Pink Tennis Balls feature
 
-**Ready for UI design review and implementation.**
+---
+
+## 9. Change History
+
+- 2026-02-21: First full specification for Pink Tennis Balls, committed to repository
+- 2026-04-27: Confirmed presence and completeness; no changes required
+
+---
+
+## 10. References
+
+- [GitHub: misterfitzy/false-eyelash-store](https://github.com/misterfitzy/false-eyelash-store)
+- Spec location: `specs/product-spec.md`
