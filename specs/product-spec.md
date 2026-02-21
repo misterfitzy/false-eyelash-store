@@ -22,6 +22,7 @@ graph TD;
   Catalog --> Ladies_Footballs;
   Catalog --> Pop_Socks;
   Catalog --> Pink_Tennis_Balls;
+  Catalog --> Glitter_Ball;
 ```
 
 ---
@@ -29,13 +30,16 @@ graph TD;
 ## 3. Shopper Features
 
 - Pink Tennis Balls listed in catalog with own top-level category page
-- Filter options:
-    - **Brand** (e.g. Wilson, Slazenger, Penn)
-    - **Color** (Pink, Mixed)
+- Glitter Ball listed as a top-level catalog category with a dedicated landing page
+- **Filtering Options:**
+    - **Brand** (e.g. Wilson, Slazenger, Penn, SparkleLight, PartyGlow, etc.)
+    - **Color** (Pink, Silver, Gold, Multicolour, Custom, Mixed)
     - **Pack Size** (Single, 3-pack, 6-pack, Carton)
     - **Ball Type** (Practice, Competition, Pressureless)
-    - **Material** (Felt, Rubber composite)
-    - **Features** (High-visibility, Extra bounce, Eco-friendly, Indoor/Outdoor)
+    - **Size** (Mini, Standard, Large)
+    - **Material** (Felt, Rubber composite, Acrylic, Polyethylene, Glass, Other)
+    - **Features** (High-visibility, Extra bounce, Eco-friendly, Indoor/Outdoor, Motorized, Hanging, Remote-Controlled, Sound-Responsive)
+    - **Intended Use** (Party, Events, Home Decor, Stage)
     - **Price** (sliding range)
     - **Rating** (1–5 stars)
     - **Inventory** ("In Stock Only" toggle)
@@ -43,23 +47,26 @@ graph TD;
 - Product cards: add to cart, quick view, wishlist
 
 **Product detail page:**
-- Variant selector (Pack Size, Ball Type)
+- Variant selector (Pack Size, Ball Type, Size, Color, Material)
 - Dynamic stock per variant
 - Display of all variant-specific features, images, descriptions
 - Product reviews, Q&A
 - Cross-sell related items
+- Video support (rotating glitter ball, light effects)
 
 ---
 
 ## 4. Admin Features
 
-- CRUD for Pink Tennis Balls products and all variant SKUs
+- CRUD for Pink Tennis Balls and Glitter Ball products and all variant SKUs
 - Import/export (.csv/.xlsx) of all related SKUs and attributes
 - Batch-edit: price, availability, feature tagging, inventory
-- Tagging (e.g. Bestseller, Limited Edition, Eco)
+- Tagging (e.g. Bestseller, Party Must-Have, Limited Edition, Eco)
 - Reporting on sales, inventory, and feature breakdowns
 - Spreadsheet-style rapid-edit and inline validation
 - Activation/deactivation of variants/products
+- Admin-specific promo banners and badges for Glitter Ball
+- Data model validation for all attributes
 
 ---
 
@@ -67,31 +74,27 @@ graph TD;
 
 ```json
 {
-  "id": "pink-tennis-ball-001",
-  "name": "Wilson Pink Tennis Balls",
-  "brand": "Wilson",
-  "description": "Premium felt, high-visibility pink tennis balls. Ideal for all courts.",
+  "id": "glitterball-silver-small",
+  "category": "Glitter Ball",
+  "brand": "SparkleLight",
+  "name": "Classic Silver Glitter Ball - Small",
+  "size": "Small",
+  "color": "Silver",
+  "material": "Acrylic",
+  "features": ["Hanging", "Sound-Responsive"],
+  "intendedUse": ["Party", "Stage"],
+  "price": 14.99,
+  "inventory": 130,
+  "rating": 4.7,
+  "images": ["/img/glitterballs/silver-small-1.jpg"],
+  "videos": ["/video/sparkle-silver-demo.mp4"],
+  "description": "A classic silver glitter ball for any party or event...",
   "variants": [
-    {
-      "sku": "WIL-PINK-3PK",
-      "pack_size": "3-pack",
-      "ball_type": "Competition",
-      "material": "Felt",
-      "features": ["High-visibility", "Eco-friendly"],
-      "color": "Pink",
-      "price": 8.99,
-      "stock": 24,
-      "active": true
-    }
+    {"size": "Medium", "price": 19.99, "inventory": 70},
+    {"size": "Large", "price": 29.99, "inventory": 22}
   ],
-  "images": [
-    "https://example.com/img/wilson-pink-3pk-1.jpg",
-    "https://example.com/img/wilson-pink-3pk-2.jpg"
-  ],
-  "rating": 4.6,
-  "rating_count": 82,
-  "tags": ["Bestseller", "Competition"],
-  "status": "active"
+  "isActive": true,
+  "badges": ["Party Must-Have"]
 }
 ```
 
@@ -100,43 +103,44 @@ graph TD;
 ## 6. Accessibility
 
 - All user/admin features WCAG 2.1 AA compliant
-- Keyboard-accessible filter/variant selectors, live region feedback for variant selection and stock
+- Keyboard-accessible filter/variant selectors, live region feedback
 - Alt text for all images, ARIA labels for controls and data grids
-- Clear error handling and warnings throughout bulk/batch actions
+- Contrast, focus indicator, accessible error handling
+- Responsive for mobile and desktop
 
 ---
 
 ## 7. Acceptance Criteria
 
 **Shopper:**
-- Can filter Pink Tennis Balls by any attribute, and results update in real-time
+- Can filter Pink Tennis Balls and Glitter Balls by any attribute, real-time updates
 - Can only add in-stock variants to cart
 - All product/variant data accurate with correct visuals and descriptions
 
 **Admin:**
-- CRUD, bulk actions, tagging, and reporting available via admin dashboard and import/export
-- Inline/bulk edits are robustly validated
-- Pink Tennis Balls can be managed like all core categories
+- CRUD, bulk actions, tagging, and reporting for both categories via admin dashboard and import/export
+- Inline/bulk edits robustly validated
+- Both categories managed like all core categories
+
+**Accessibility:**
+- All shopper/admin UI for both categories passes WCAG 2.1 AA checks
 
 ---
 
 ## 8. Next Steps
-
 - [ ] Review and approve this specification
 - [ ] Send to design for wireframes (catalog, detail, admin)
-- [ ] Prepare data import templates
-- [ ] Prioritize coding/design cards for Pink Tennis Balls feature
+- [ ] Prepare data import templates (Pink Tennis Balls + Glitter Ball)
+- [ ] Prioritize coding/design cards for feature implementation
 
 ---
 
 ## 9. Change History
-
 - 2026-02-21: First full specification for Pink Tennis Balls, committed to repository
-- 2026-04-27: Confirmed presence and completeness; no changes required
+- 2026-04-27: Added Glitter Ball as core, filterable product category
 
 ---
 
 ## 10. References
-
 - [GitHub: misterfitzy/false-eyelash-store](https://github.com/misterfitzy/false-eyelash-store)
 - Spec location: `specs/product-spec.md`
