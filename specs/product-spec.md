@@ -1,233 +1,165 @@
-# Product Specification: Diet Guide for Ladies
+# Product Specification: Fancy Pink Xbox Controller for Long False Nails
 
-## 1. Product Overview
+_Last updated: 2026-04-28_
 
-The **Diet Guide for Ladies** is a responsive web application that empowers women to achieve their dietary and wellness goals. It provides personalized meal plans, healthy recipes, trackable nutrition goals, and vetted advice specific to women's life stages and health objectives.
+## 1. Overview
 
----
+Add a new product (“Fancy Pink Xbox Controller – Nails Edition”) designed specifically for gamers who wear very long false nails. This controller should combine striking visual appeal (premium pink finish) with unique ergonomic modifications to allow safe, comfortable gaming with extra-long nails. The product should be included in the Accessories category, with discoverability features and attributes relevant to its unique audience.
 
-## 2. Target Users
+## 2. Goals
 
-- Women aged 18-60
-- Primary goals: wellness, weight loss, weight gain, fitness, special conditions (e.g., pregnancy, menopause, PCOS, etc.)
-- Comfort with digital solutions; varying nutrition knowledge
+- Expand accessory/product catalog to capture a new demographic: style-conscious gamers who wear false nails.
+- Establish leadership in inclusive, fun gaming accessories.
+- Enhance the “giftability” and cross-sell of beauty and lifestyle items in the store.
 
----
+## 3. Target Users
 
-## 3. Core Features
-
-### A. Personalized Diet Plans
-- Intake: age, height, weight, dietary preferences (vegan, vegetarian, gluten-free), allergies, health goals
-- Output: customizable meal plans, dynamic adjustment (e.g., “swap meal”)
-- Macronutrient targets and portion suggestions
-
-### B. Recipe Library
-- Curated, filterable recipes by meal, cuisine, prep time, dietary restriction
-- Nutritional breakdown (calories, protein, fat, fiber, etc.)
-
-### C. Nutrition Tracking
-- Daily/weekly progress dashboard
-- Input foods eaten, sync with meal plan, visualizations (charts, streaks)
-
-### D. Educational Content
-- Science-backed articles, FAQs, mythbusting
-- Guides for common women’s health conditions (PMS, menopause, pregnancy, PCOS, etc.)
-
-### E. Community & Support (Phase 2)
-- Optional: Q&A forum, group challenges, share progress
+- Gamers (predominantly women and non-binary individuals) who use long false nails.
+- Customers looking for unique, fashionable or ergonomic gaming accessories.
+- Shoppers searching for gift ideas blending beauty & gaming.
 
 ---
 
-## 4. User Stories
+## 4. Key Features
 
-**As a new user:**
-- I can sign up and set my health goal (e.g., tone up, lose weight, hormone balance).
-- I can specify dietary restrictions and allergies.
-- I can receive a tailored meal plan instantly.
+### Product Features
+- **Color:** Vibrant/fancy pink (high-quality finish, glitter or metallic accents optional).
+- **Ergonomics:**  
+  - Raised or shrouded button domes, spacing adapted for long nails  
+  - Concave/tilted or extended triggers and bumpers  
+  - Slim, indented D-pad and thumbsticks  
+  - Anti-slip grips  
+  - Optional removable nail-guard overlays
+- **Platform:** Xbox Series S/X, compatibility with PC.
+- **Wireless Functionality:** Bluetooth and USB.
+- **Packaging:** Stylish, gift-worthy box.
+- **Special Accessories:** Optional: matching pink nail set, cleaning cloth, storage pouch.
 
-**As a returning user:**
-- I can view and swap upcoming meals for alternatives.
-- I can log my food, view my progress, and see how I'm tracking toward my goal.
-- I can browse and save favorite recipes.
-
-**As a content admin:**
-- I can add/edit diet plans, recipes, and articles via a secure dashboard.
+### Store/Platform Features
+- Category: _Accessories > Gaming_
+- Filtering: by color, compatibility, ergonomic suitability (“Nail Friendly”), brand, price.
+- Advanced product page:  
+  - Video demo showing ease of use with long nails  
+  - Gallery: hand models wearing long false nails  
+  - Detailed specs (dimensions, materials, warranty, compatibility)
+  - Customer reviews (with photos)
+- Cross-Selling: Show with false nails, glitter nail sets, and other “gamer glam” accessories
+- Tags: `Gaming`, `Ergonomic`, `Nail Friendly`, `Pink`, `Gift`
 
 ---
 
-## 5. Information Architecture/Site Map
+## 5. Information Architecture & Site Map (mermaid)
 
 ```mermaid
 graph TD
-    Landing["Landing Page"]
-    Register["Sign Up / Profile Setup"]
-    Dashboard["User Dashboard"]
-    MealPlan["My Meal Plan"]
-    Recipes["Recipes Library"]
-    Tracker["Nutrition Tracker"]
-    Articles["Diet Articles"]
-    Admin["Admin Dashboard"]
-    
-    Landing --> Register
-    Register --> Dashboard
-    Dashboard --> MealPlan
-    Dashboard --> Recipes
-    Dashboard --> Tracker
-    Dashboard --> Articles
-    Admin -.-> Recipes
-    Admin -.-> MealPlan
-    Admin -.-> Articles
+  A[Homepage]
+  B[Category: Accessories]
+  C[Subcategory: Gaming]
+  D[Product: Fancy Pink Xbox Controller]
+  E[Product Details Page]
+  F[Comparison Table]
+  G[Cross-sell: False Nails]
+  A --> B
+  B --> C
+  C --> D
+  D --> E
+  E --> F
+  E --> G
+```
+
+## 6. Data Model Extension
+
+```yaml
+Product:
+  - id: string
+  - name: string ["Fancy Pink Xbox Controller – Nails Edition"]
+  - category: string [Accessories]
+  - subcategory: string [Gaming]
+  - price: number
+  - images: [string]
+  - video_url: string
+  - ergonomic_features: [string] # ["Nail Guard Buttons", "Concave Triggers", ...]
+  - color: string ["Pink"]
+  - compatible_platforms: [string]
+  - tags: [string]
+  - highlights: [string]
+  - cross_sell_ids: [string]
+  - gift_box: boolean
+  - in_stock: boolean
+  - review_ids: [string]
+  - options: 
+        - bundle_with_nails: boolean
+        - removable_guards: boolean
+  - created_at: datetime
+  - updated_at: datetime
 ```
 
 ---
 
-## 6. Data Model (sample, extensible)
+## 7. User Stories & Acceptance Criteria
 
-### User
-- id, email, password (hashed), profile: {age, height, weight, preferences, restrictions, health goals}, favorites[], progress[]
+### Shoppers
+- **As a gamer with long nails**, I want to filter gaming accessories for “Nail Friendly” so I can see comfortable options.
+  - _AC:_ “Nail Friendly” appears as a filter and on the controller’s product page.
+- **As a style-conscious shopper**, I want thorough photos, demo video, and details to confirm it fits my style and needs.
+  - _AC:_ Gallery includes at least 5 diverse images, demo video optional but highly encouraged.
+- **As a gift shopper**, I want to see if it comes ready to gift and matches nail sets within the store.
+  - _AC:_ Product page and cart promote bundle/cross-sells, packaging info.
 
-### MealPlan
-- id, user_id, start_date, days[{date, meals[]}]
+### Admin
+- **As a catalog admin**, I want to clearly add and manage ergonomic attributes, cross-selling, and highlight nail-friendly features.
+  - _AC:_ Product admin allows selection of “Ergonomic: Nail Friendly,” cross-sell targets, and detailed specs.
+- **As a marketing manager**, I want to tag and feature this product on landing pages and in search for “gamer girls”, “nail-friendly controller”, “pink Xbox”.
+  - _AC:_ Product is easily discoverable through tags and promoted search.
 
-### Recipe
-- id, name, ingredients[], instructions, nutrition_info, tags[], prep_time, author
-
-### Article
-- id, title, body, tags[], related_conditions[], author
-
----
-
-## 7. UX/UI Guidance
-
-- Warm, welcoming palette, inclusive photography/illustrations
-- Onboarding flow for profile setup
-- Clear CTAs (“Get Your Plan”, “Log Meal”, “Swap Recipe”)
-- Accessible forms, readable fonts, minimized cognitive load
-- Mobile-first responsive layouts
-- Dietary restriction support at every meal/recipe node
+### Accessibility/Compliance
+- _AC:_ All images, videos, and variant selectors have accessible labels/descriptions. Color contrast meets AA minimums.
 
 ---
 
-## 8. Acceptance Criteria
+## 8. UI/UX Guidelines
 
-- Users receive instant, personalized meal plans based on input
-- Nutrition info visible, accurate, and adjustable by user
-- Recipes, plans, and articles are filterable and searchable
-- Admin can manage content via dashboard (CRUD)
-- App is mobile-friendly and WCAG 2.1 AA compliant
-- All user data is secure and private
-
----
-
-## 9. Next Steps
-
-- Review and approve full specification
-- Create wireframes/UI mockups for onboarding, meal plan, and recipe flow
-- Finalize data model and meal plan generation logic
-- Begin development sprints (MVP: personalized plans, recipes, nutrition tracker)
-- Plan for phased rollout: core features, then community/support if desired
+- **Colorful, prominent product display – use pink-and-glam accenting.**
+- Demonstrate unique ergonomic areas in annotated photos.
+- Variant selectors: show “bundle with pink nails” as a prominent option.
+- Demo video at top of product detail page.
+- Accessibility: All controls keyboard/screen reader navigable, images with descriptive alt text.
 
 ---
 
-## 10. Change Log
+## 9. MVP Scope
 
-- v1.0: Initial product specification, 2026-02-21
-
----
-
-## 11. Feature Extension: Diet Cabbage Coordinations
-
-**Goal:**  
-Introduce "Cabbage Coordinations" as a new filterable diet category, supporting both the shopper and admin experience with consistent accessibility and management features.
+- Add category, product, and all required filtering/display for “Nail Friendly” gaming accessories.
+- Seed store with Fancy Pink Xbox Controller, fully spec’d with images, feature badges, cross-sell.
+- Cross-link with Nails category and related beauty/gaming gifts.
 
 ---
 
-### 11.1 Functional Enhancements
+## 10. Testing & Acceptance
 
-#### Shopper Experience
-
-- "Cabbage Coordinations" available as a diet filter in all meal plan and recipe search tools.
-- Curated cabbage-centric meal plans and recipes, with nutritional info, ingredients, and clear preparation steps.
-- Accessible, mobile-responsive pages and modals.
-- Actions: "Add to Plan", "Save for Later", full tagging support.
-
-#### Admin Experience
-
-- Complete CRUD access to "Cabbage Coordinations" diet plans and recipes from the admin dashboard.
-- Ability to bulk import and export cabbage-based content.
-- Apply "Featured" badge, manage visibility, and attach educational guides.
+- Product appears correctly under Accessories > Gaming.
+- “Nail Friendly” filter and badge work.
+- Images and video confirm suitability for long false nails.
+- Bundling and cross-sell to nails function as designed.
+- Admin panel supports all custom attributes.
+- Meets accessibility AA compliance.
 
 ---
 
-### 11.2 Data Model Update
+## 11. Next Steps
 
-Additions/Updates to the existing model:
-
-```mermaid
-erDiagram
-    MealPlan ||--o{ DietCategory : contains
-    DietCategory {
-        string id PK
-        string name
-        string description
-        string imageUrl
-        bool featured
-    }
-    DietCategory ||--o{ Recipe : includes
-    Recipe {
-        string id PK
-        string dietCategoryId FK
-        string title
-        string description
-        string ingredients
-        string steps
-        string nutritionInfo
-        string imageUrl
-        string difficulty
-        string mealType
-    }
-```
-> New value:  
-> `DietCategory.name = "Cabbage Coordinations"`
+- Approve/amend feature spec.
+- Create wireframes/mocks showing product page, filtering, and cross-sell blocks.
+- Add tasks for engineering & content (photo/video, product details, admin form).
+- Extend product and filter models accordingly.
+- Prepare admin onboarding for ergonomic attribute management.
 
 ---
 
-### 11.3 User Stories
-
-- **As a user,** I can filter for cabbage-based meal plans and recipes.
-- **As a user,** I can add cabbage-based meals to my plan.
-- **As an admin,** I manage (add, edit, feature, remove) Cabbage Coordinations content from the existing dashboard.
+_File Path for Spec: `specs/product-spec.md`_
 
 ---
 
-### 11.4 Acceptance Criteria
+### Ready for Design Agent
 
-- [ ] "Cabbage Coordinations" selectable on all relevant UI filters/menus.
-- [ ] Recipes and meal plans visible/searchable and display with correct details.
-- [ ] Admin can fully manage Cabbage Coordinations content.
-- [ ] Accessibility, mobile support, and platform styling are maintained.
-
----
-
-### 11.5 Information Architecture Update
-
-```mermaid
-graph TD
-    Dashboard --> MealPlan
-    MealPlan --> DietFilter["Diet Category Filter"]
-    DietFilter --> Cabbage["Cabbage Coordinations"]
-    Cabbage --> RecipeList["Cabbage-Based Recipes"]
-    Cabbage --> PlanList["Cabbage Meal Plans"]
-    Admin --> DietMgmt["Diet Management"]
-    DietMgmt --> CabbageAdmin["Manage Cabbage Coordinations"]
-```
-
----
-
-### 11.6 Change Log
-
-- v1.1: Added Cabbage Coordinations diet category feature. (2026-02-21)
-
----
-
-This addition is ready for design and implementation review.
+This spec is now workflow-ready and should be sent to the design agent for the next steps.
