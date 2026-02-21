@@ -1,21 +1,20 @@
-# Product Specification Addendum: Pop Socks Mark 2
+# Product Specification Addendum: Pink Tennis Balls
 
-**Repository:** [`misterfitzy/false-eyelash-store`](https://github.com/misterfitzy/false-eyelash-store)  
-**Spec Location:** `specs/product-spec.md`  
-**Date:** 21-Feb-2026
+**Repository:** [`misterfitzy/false-eyelash-store`](https://github.com/misterfitzy/false-eyelash-store)
+**Spec Location:** `specs/product-spec.md`
+**Date:** 27-Apr-2026
 
 ---
 
 ## Overview
 
-**Pop Socks Mark 2** introduces an advanced, filterable, and scalable product line into the store. The new spec includes richer variant management, improved taxonomy, new filter dimensions, extended admin tooling, and a refined user experience.
+**Pink Tennis Balls** is a new, filterable, and scalable product category for the store. This specification includes shopper and admin features, updated data models, filtering controls, admin workflows, and accessibility requirements.
 
 ---
 
 ## Catalog & Navigation
 
-- Pop Socks Mark 2 is a primary, filterable catalog category at top navigation level.
-- Catalog structure (example):
+- Pink Tennis Balls is a top-level navigation category alongside existing top categories (e.g. False Eyelashes, False Nails, Lipstick, Footballs, Pop Socks, etc.).
 
 ```mermaid
 graph TD
@@ -28,137 +27,122 @@ graph TD
     Catalog --> Lipstick
     Catalog --> Ladies_Soaps
     Catalog --> Pop_Socks
-  Pop_Socks --> Sock_Listing_Page
-  Sock_Listing_Page --> Sock_Detail_Page
+    Catalog --> Ladies_Footballs
+    Catalog --> Pink_Tennis_Balls
 ```
 
 ---
 
 ## Shopper Features & Filters
 
-**Filter dimensions (updated):**
-- Brand
-- Style/Pattern (e.g. Dots, Stripes, Graphics, Plain)
-- Color(s)
-- Size (One Size / S/M/L/XL / EU/UK/US socks sizing)
-- Length (Ankle, Crew, Knee-high, Over-the-knee, No-show)
-- Material(s) (e.g. Cotton, Bamboo, Nylon blends, Recycled)
-- Special Features (Compression, Moisture-wicking, Thermal, Seamless toe, Anti-slip)
-- Target (Unisex, Ladies, Men’s, Kids, Sports, Performance, Fashion, Diabetic)
-- Eco/Vegan status
-- Multipack (Single, 3-pack, 5-pack, etc.)
-- Price range
-- Rating
-- Stock status
+**Filter dimensions:**
+- Brand (Wilson, Slazenger, Head, Penn, etc.)
+- Color (Pink, Multi, Neon, Custom)
+- Pack Size (1, 3, 4, 6, 12, 24, etc.)
+- Ball Type (Standard, Pressureless, Championship, Training, Kids)
+- Material (Felt, Rubber, Eco, Vegan, Recycled)
+- Features (Extra Bounce, Indoor/Outdoor, Limited Edition, Custom Print)
+- In Stock Only (toggle)
+- Price Range ($ slider)
+- Rating (1–5 stars)
 
-**Sort options:** Price, Newest, Best Rated, Trending
+**Sort options:** Price, Newest, Best Rated, Brand
 
-Advanced:
-- Filter by “Sock Technology” or “Mark 2” feature tag (e.g. “Odor-control tech”, “Reinforced heel/toe”)
+**Product detail page:**
+- Gallery images (angles, close-up, packaging, on-court)
+- Badges: “Limited Edition”, “Charity” etc. (if applicable)
+- Specs table: size, material, weight, bounce rating
+- Bulk discounts by pack size
+- Per-pack and per-ball inventory status
+- Related items cross-sell (e.g., rackets, sweatbands)
+- Shopper reviews, ratings, and Q&A
+- Accessible swatch and pack selectors
 
----
-
-## Product Detail Page
-
-- Variant selectors (color, style, size, multipack)
-- High-res hero image with zoom
-- Additional image reel for photos, packaging, close-ups
-- “Mark 2” technology badge and modal with explanation
-- Care instructions, fit & size guide
-- Add to cart, wish list, buy now
-
----
-
-## Product Data Model
-
-Example (YAML style):
-
-```yaml
-id: 'sock-524'
-category: 'pop-socks'
-subcategory: 'mark-2'
-brand: 'SockyPop'
-name: "Pop Socks Mark 2 – Bamboo Blend Crew"
-technology_tags: ['Mark 2', 'Odor-Control', 'Reinforced Heel/Toe']
-variant_options:
-  size: ['S', 'M', 'L', 'XL']
-  color: ['Rainbow', 'Black', 'White', 'Dotty']
-  multipack: ['single', '3-pack']
-material: ['Bamboo', 'Polyamide', 'Elastane']
-pattern: 'Rainbow'
-features: ['Thermal', 'Moisture-Wicking', 'Seamless Toe']
-gender_target: ['Unisex']
-eco: True
-vegan: True
-price: 7.99
-rating: 4.8
-images: ['pop-sock-mark2-front.jpg', ...]
-sku: 'SPM2-CRWB-S'
-inventory: 128
-description: |
-  Our Mark 2 crew socks combine bamboo softness with advanced odor control...
-care: "Machine wash cool, tumble dry low"
-```
+**Mobile & accessibility:**
+- Fully mobile and accessible; all filters and selectors WCAG 2.1 AA compliant
+- Alt text for all images
+- Large tap targets for variant/pack picking
 
 ---
 
 ## Admin Features
 
-**Control Panel:**
-- CRUD for Pop Socks Mark 2, incl. full variant matrices
-- Bulk import/export (CSV/Spreadsheet) with validation for new filter fields
-- Batch editing (all Mark 2 socks, or by brand/feature)
-- Inventory min/max alerts by base product + variant
-- Inline image management and media ordering
-- Batch publishing/unpublishing
-- Product analytics/reporting (Mark 2 filter available)
+- Full CRUD for Pink Tennis Ball SKUs and variants (pack sizes, color, ball type, features)
+- Bulk import/export via CSV/XLSX template with validation
+- Spreadsheet-style batch editing for inventory and pricing
+- Inline image and media management
+- Tag as “Featured”, “Limited”, “Promo”, “Charity”, etc.
+- Product activation/deactivation
+- Inventory and sales analytics (by pack size, color, type)
+- Review moderation and reporting
+- Min/max inventory alerts
 
 ---
 
-## User Stories
+## Data Model Example
 
-**Shoppers**
-- As a shopper, I can filter for “Mark 2” socks by brand, pattern, size, features, and length.
-- As a shopper, I see “Mark 2” badges and detailed tech modals on applicable socks.
-- As a shopper, I can easily add multiple Mark 2 color/size variants to cart.
-- As a shopper, Pop Socks Mark 2 can be checked out with items from other categories.
-
-**Admins**
-- As an admin, I can add/edit/delete Mark 2 Pop Socks and upload all images/media.
-- As an admin, I can import/export Mark 2 Pop Sock SKUs with all filter fields mapped.
-- As an admin, I receive alerts when Mark 2 variants go out of stock.
-- As an admin, I can report on Mark 2 sales by brand, tech feature, size, and color.
-
----
-
-## Acceptance Criteria
-
-- Pop Socks Mark 2 visible at top-level navigation and as a filter
-- All filter/search/sort options above fully available
-- PDP displays variant selectors, “Mark 2” badges, and tech info
-- Admin dashboard supports full CRUD + bulk actions for new data fields
-- Responsive/mobile-friendly and fully accessible
-- Can mix Mark 2 Pop Socks with other categories in one cart/checkout
-- ADA/WCAG-compliant: accessible filters, labels, and imagery
+```json
+{
+  "id": "tennisball-pink-4pk-001",
+  "category": "Pink Tennis Balls",
+  "brand": "Wilson",
+  "pack_size": 4,
+  "ball_type": "Standard",
+  "color": "Pink",
+  "features": ["Limited Edition", "Extra Bounce", "Outdoor"],
+  "material": "Felt",
+  "price": 12.99,
+  "status": "active",
+  "inventory": 42,
+  "image_urls": ["..."],
+  "ratings": 4.8,
+  "rating_count": 14,
+  "badges": ["Limited Edition"],
+  "description": "Wilson Pink Tennis Balls, perfect for both fun and serious play. 4-Pack."
+}
+```
 
 ---
 
-## UI/UX Guidance
+## User Stories & Acceptance Criteria
 
-- Use reusable filter panels styled to match core store, with distinct “Sock Technology” or “Mark 2 Features” quick-filters.
-- “Mark 2” tech badge clickable opens a modal with info, images, comparison to Mark 1.
-- Size guides and material facts easily accessible.
-- High-res image zoom, carousel, and variant thumbnail display.
-- All core interactions accessible by keyboard and screen reader.
+**Shopper**
+- As a shopper, I can browse and filter Pink Tennis Balls using all available dimensions
+- As a shopper, I can see badges for limited/special editions and out-of-stock clearly
+- As a shopper, I can view multiple images, full details, and reviews
+- As a shopper, I can only add in-stock variants to cart
+
+**Admin**
+- As an admin, I can add/edit/delete tennis ball SKUs and all variant attributes
+- As an admin, I can import/export tennis balls in bulk with validation checks
+- As an admin, I can report on inventory and sales by color, pack, and type
+- As an admin, I can tag and feature SKUs
+
+---
+
+## Accessibility & UI Guidance
+
+- All filter panels and PDP controls are WCAG 2.1 AA+
+- Distinct color contrasts for pink imagery vs. white backgrounds
+- Alt text for all shots
+- Fully responsive and mobile optimized
+
+---
+
+## Change History
+- 27-Apr-2026: Add Pink Tennis Balls as a top-level category
+- 20-Feb-2026: Add Ladies Footballs
+- 21-Feb-2026: Add Pop Socks Mark 2
+- 19–27-Feb-2026: Lipstick spec & data model enhancements
+- 18-Feb-2026: High Rise Jeans, Hair Dye added
+- 17-Feb-2026: False Nails added; store design initiated
 
 ---
 
 ## Next Steps
+- [ ] Update wireframes for Pink Tennis Balls category and item detail pages
+- [ ] Design initial import spreadsheet for tennis ball SKUs
+- [ ] Prioritize features in dev implementation backlog
 
-- [ ] Review and update wireframes for Pop Socks Mark 2
-- [ ] Add to `specs/product-spec.md` in the repository
-- [ ] Prepare mockups for tech badge/modal, sock variant selectors, and filter panel extensions
 
----
-
-**Ready for UI design and implementation. Would you like to review draft wireframes or proceed with another new category/product?**
+**Ready for UI design review and implementation.**
