@@ -1,141 +1,151 @@
-# High-Level Design Spec: Novelty Cake Category
-
-## Color Palette & Style
-- **Primary:** #E83C6F (Raspberry Pink)
-- **Secondary:** #FDD835 (Lemon Yellow), #FFF3DD (Soft Cream), #2979FF (Icing Blue), #44BFA3 (Spearmint Green)
-- **Neutral:** #FAFAFA (off-white bg), #333 (text), #888 (labels/borders)
-- **Accent:** #BA68C8 (Lilac/Novelty), white highlights, subtle sprinkles as UI background element
-- **Style:** Soft rounded corners, playful icons, minimal shadows, cheerful imagery.
+# Ergonomic Lady Egg (Beauty Sponge) – High-Level Design Spec
 
 ---
 
-## Layouts (Textual Wireframes)
+## Suggested Color Palette & Style
 
----
-### 1. Shop - Novelty Cake Category Page
+| Token           | Hex      | Usage                              |
+|-----------------|----------|-------------------------------------|
+| Fancy Pink      | #FF91AF  | Brand/primary, accent, buttons      |
+| Soft Peach      | #FFDFD3  | Secondary bg, highlights            |
+| Lavender Dream  | #D6B4FC  | Alternate accent, variant options   |
+| Clean White     | #FFFFFF  | Main background, containers         |
+| Gentle Gray     | #F5F5F7  | Panels, input bg, border highlight  |
+| Charcoal Black  | #29243A  | Title, strong text, nav, contrast   |
+| Minty Green     | #ADEFC7  | Success/informational highlights    |
 
-- **Header/Navbar**
-  - Logo | Shop | About | Cake | Cart | Account
-- **Breadcrumbs:** Home > Shop > Novelty Cake
-- **Left Sidebar:**
-  - Filters
-    - Occasion (checkboxes)
-    - Flavor (checkboxes)
-    - Shape/Design (checkboxes)
-    - Dietary (checkboxes)
-    - Price (slider)
-    - Personalized (yes/no)
-    - In stock only (toggle)
-- **Main Content:**
-  - Category title: "Novelty Cakes For Every Occasion"
-  - Sort bar: Sort [Newest | Price | Rating]
-  - Product card grid (2-4 columns, responsive)
-    - Card: Image, title, price, dietary tags, quick add
-- **Footer:**
-  - Links: Contact, FAQ, Policies, Social icons
-
----
-### 2. Product Detail Page (Cake PDP)
-
-- **Header/Navbar**
-- **Breadcrumbs:** Home > Shop > Novelty Cake > [Product]
-- **Main Area:**
-  - Product gallery (carousel + zoom)
-  - Info: title, price, badges (bestseller, seasonal), dietary highlights, serving size
-  - Personalization form (show if allowed): text fields, image upload
-  - Flavor/size selector
-  - Ingredient/allergen/dietary info summary
-  - Add to cart, wishlist
-  - Delivery estimate, storage guidance
-  - Tabs: Description | Reviews | Q&A | Storage & Allergy FAQ
-- **Sidebar:**
-  - Other recommended cakes
-- **Footer**
-
----
-### 3. Admin Novelty Cake Management
-
-- **Top Nav**: Dashboard | Orders | Products | Novelty Cake | Reports
-- **Table/List:**
-  - Filter/search, bulk actions
-  - Columns: Image, Name, Status, Occasions, Price, Inventory, Dietary, Tags, Actions
-  - Add/Edit (drawer or modal): Fields for all variant, dietary, seasonal, personalization, SEO
-- **CSV/XLSX Import, Batch Edit tools**
-- **Validation/Warnings (inline, color-coded)**
+**Style:** Playful, soft curves, luxury-feel. Clean sans-serif fonts (Montserrat, Roboto, or similar). Illustrative icons for ergonomic features.
 
 ---
 
-## UI Elements & Components
-- Navbar
-- Footer
-- Product Card
-- Filter Panel (Sidebar)
-- Sort Bar
-- Product Gallery Carousel
-- Personalization Form (conditional, supports photo & text)
-- Tags/Badges (Dietary, Bestseller, New, Out-of-Stock)
-- Variant Selector (flavor/size)
-- Review, Q&A Tabs
-- Wishlist/Add To Cart Buttons
-- Delivery Date Picker/Estimator
-- Admin Table, Bulk Actions, Import/Export
+## Layout Description (Wireframes)
+
+### 1. Home Page
+```
+-----------------------------
+[Navbar] -- Logo | Shop | Bundles | About | Cart
+-----------------------------
+[Hero Section: Large image of Lady Egg in hand with long nails]
+Headline: “Blend Beautifully, Protect Your Nails”
+CTA: [Shop Lady Egg] [Learn More]
+-----------------------------
+[Product Highlights - 3 Columns]
+- Nail Friendly Grip   - Ultra Soft Foam      - Stylish Stand
+-----------------------------
+[Collections Grid: Lady Egg Colors w/ quick add]
+-----------------------------
+[Testimonials Slider]
+-----------------------------
+[Footer]
+-----------------------------
+```
+
+### 2. Product Detail Page – Lady Egg
+```
+-----------------------------
+[Navbar]
+-----------------------------
+[Product Gallery | Product Info]
+[ Main image (hand w/ long nails), alt angles, color selector  ][ Title, price, color, Nail Friendly badge ]
+[ Add to Cart ] [Bundle with Accessories]
+[ Description: Ergonomic Features | Material | Care ]
+[ Tabs: Details | Reviews | Bundles ]
+-----------------------------
+[Suggested Products Grid]
+-----------------------------
+[Footer]
+-----------------------------
+```
+
+### 3. Category Page – Beauty Tools
+```
+-----------------------------
+[Navbar]
+-----------------------------
+[Filter Sidebar]
+- Brand
+- Material
+- Ergonomic Features (Nail Friendly)
+- Color
+[List/Grid of Lady Eggs and other tools]
+-----------------------------
+[Footer]
+-----------------------------
+```
+
+### 4. Admin Product Addition/Edit Page
+```
+-----------------------------
+[Sidebar: Catalog | Orders | Users |]
+-----------------------------
+[Form:]
+- Product Name
+- Slug
+- Type: Beauty Sponge
+- Colors (multi)
+- Image uploads
+- Price
+- Tags: Nail Friendly, Ergonomic, Vegan
+- Description
+- Bundles
+- Stock management
+- Save/Publish
+-----------------------------
+```
+
+---
+
+## UI Elements to Include
+- Buttons: Primary (Fancy Pink), Secondary (Soft Peach), Icon (Lavender)
+- Toggles/Switches: For filtering (Ergonomic/Nail Friendly)
+- Badges: “Nail Friendly”, “Vegan”, “Eco”
+- Color selectors: Palette swatches
+- Product Carousel/Slider
+- Tabs (Details/Reviews/Bundles)
+- Input forms: Admin, Reviews
+- Modal overlays for bundle selection
+- Quick add to cart feature in collection grid
+- Accessibility: High-contrast text, focus outlines, alt text
 
 ---
 
 ## Component Breakdown
-
-- **Navbar**: Logo, Main Nav, Cart, Account
-- **Hero/Category Header**: Category title, occasion graphic, tagline
-- **Filter Panel**: All filter groups, clear/reset
-- **Product Card**: Image, basic info, dietary tags, add button
-- **Product Detail: Gallery + Info**
-- **Personalization Form**: Only shown if product is personalizable
-- **Review/Q&A**
-- **Admin List/Table**: Fields, filtering, actions, batch tools
-- **Footer**: Company info, policy links, socials
+- **Navbar:** Logo, shop links, cart (mobile & desktop)
+- **Hero Section:** Large callout, lifestyle image, CTAs
+- **Product Card:** Image, price, badges, color selector, quick add
+- **Product Gallery:** Main & alternate views, zoom
+- **Feature Grid:** Icons w/ short text for ergonomic features
+- **Review/Slider:** Customer quotes with star rating
+- **Admin UI:** Form fields, tag selectors, stock interface
+- **Footer:** Links, contact, social media
+- **Filter Sidebar:** Checkbox/toggle filters for ergonomic/nail friendly
 
 ---
 
-## Mermaid Diagrams
-
-### User Journey (Shopper)
+## Mermaid Layout Diagram
 ```mermaid
-flowchart LR
-    A[Home] --> B[Shop]
-    B --> C[Novelty Cake Category]
-    C --> D[Apply Filters]
-    D --> E[View Cake Details]
-    E --> F[Personalize Cake?]
-    F -- Yes --> G[Add Message/Image]
-    F -- No --> H[Select Variant/Size]
-    G --> I[Cart]
-    H --> I[Cart]
-    I --> J[Checkout]
-```
-
-### Page Layout: Category
-```mermaid
-flowchart TD
-    NAV[Header/Navbar]
-    FLTR[Sidebar Filters]-->|left| GRID[Product Card Grid]
-    GRID-->|bottom| FOOTER[Footer]
-    NAV-->GRID
-    NAV-->FLTR
-    GRID-->FOOTER
+graph TD
+  Home --|Hero| HeroSection
+  Home --|Highlights| ProductHighlights
+  Home --|Collections| CollectionGrid
+  Home --|Slider| Testimonials
+  ProductPage --|Gallery| ProductGallery
+  ProductPage --|Details| ProductInfoDetails
+  ProductPage --|Tabs| ProductTabs
+  Admin --|Form| AdminProductForm
+  Admin --|Sidebar| AdminNav
 ```
 
 ---
 
-## Supporting Files
-- See [Figma Draft Designs](https://www.figma.com/file/example-link-novelty-cake-designs) _(placeholder)_
-- [colors.json](./colors.json)
+## External Visuals
+- [Figma Prototype Board (work-in-progress)](https://www.figma.com/file/0XYZabcd1234example)
 
 ---
 
-## Commit Info
-- Commit message: "Add high-level design for Product Manager review"
+## Supporting Design Tokens
+- See `designs/colors.json` for palette in code form
 
 ---
 
-## Status
-**Design is ready for Product Manager review. Please confirm or request changes.**
+### Ready for Product Manager review. For feedback, comment on this commit!
