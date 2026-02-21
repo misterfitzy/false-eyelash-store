@@ -1,114 +1,141 @@
-# High-Level Design Spec: Beauty Accessories Store (False Eyelashes & False Nails)
+# High-Level Design Spec: Novelty Cake Category
 
 ## Color Palette & Style
-- **Primary:** Soft pink (#F8E1E7), Blush rose (#F6C5C0)
-- **Accent:** Nude beige (#F6EDD9), Metallic gold (#E7C38B), Deep brown (#59443C)
-- **Text:** Charcoal (#2D2328), White (#FFFFFF)
-- **Style:** Modern, minimal, feminine, white space, soft shadows, elegant UI
+- **Primary:** #E83C6F (Raspberry Pink)
+- **Secondary:** #FDD835 (Lemon Yellow), #FFF3DD (Soft Cream), #2979FF (Icing Blue), #44BFA3 (Spearmint Green)
+- **Neutral:** #FAFAFA (off-white bg), #333 (text), #888 (labels/borders)
+- **Accent:** #BA68C8 (Lilac/Novelty), white highlights, subtle sprinkles as UI background element
+- **Style:** Soft rounded corners, playful icons, minimal shadows, cheerful imagery.
 
 ---
 
-## Layout Descriptions (Textual Wireframes)
+## Layouts (Textual Wireframes)
 
-### 1. Homepage
-- **Hero Section:** Large banner (eyelash + nail imagery), headline, CTA buttons (Shop Lashes / Shop Nails)
-- **Featured Products:** Carousel/grid, mix of top-selling lashes & nails
-- **Benefits Bar:** Icons for Shipping, Cruelty-Free, Returns, Secure Payments
-- **Categories Preview:** Two large blocks ("Shop Lashes", "Shop Nails")
-- **Testimonials:** Customer quotes/images
-- **Newsletter Signup:** Email form
-- **Footer:** Navigation links, contact, social media
+---
+### 1. Shop - Novelty Cake Category Page
 
-### 2. Product Catalogue
-- **Category Tabs or Sidebar:** False Eyelashes | False Nails (toggle)
-- **Filter Bar:** Style, length (lashes), finish/shape/color (nails), price, search
-- **Product Grid:** Image, name, price, quick add-to-cart
+- **Header/Navbar**
+  - Logo | Shop | About | Cake | Cart | Account
+- **Breadcrumbs:** Home > Shop > Novelty Cake
+- **Left Sidebar:**
+  - Filters
+    - Occasion (checkboxes)
+    - Flavor (checkboxes)
+    - Shape/Design (checkboxes)
+    - Dietary (checkboxes)
+    - Price (slider)
+    - Personalized (yes/no)
+    - In stock only (toggle)
+- **Main Content:**
+  - Category title: "Novelty Cakes For Every Occasion"
+  - Sort bar: Sort [Newest | Price | Rating]
+  - Product card grid (2-4 columns, responsive)
+    - Card: Image, title, price, dietary tags, quick add
+- **Footer:**
+  - Links: Contact, FAQ, Policies, Social icons
 
-### 3. Product Detail Page
-- **Gallery:** Main image, thumbnails
-- **Info:** Title, price, description, attributes (style/length/shape), stock
-- **Reviews:** Star rating, customer comments
-- **Add to Cart:** Quantity selector, button
-- **Upsell/Cross-Sell:** Related products
+---
+### 2. Product Detail Page (Cake PDP)
 
-### 4. Shopping Cart
-- **Line Items:** Image, name, selected attributes, price, quantity, subtotal
-- **Summary:** Total, shipping estimate, checkout button
+- **Header/Navbar**
+- **Breadcrumbs:** Home > Shop > Novelty Cake > [Product]
+- **Main Area:**
+  - Product gallery (carousel + zoom)
+  - Info: title, price, badges (bestseller, seasonal), dietary highlights, serving size
+  - Personalization form (show if allowed): text fields, image upload
+  - Flavor/size selector
+  - Ingredient/allergen/dietary info summary
+  - Add to cart, wishlist
+  - Delivery estimate, storage guidance
+  - Tabs: Description | Reviews | Q&A | Storage & Allergy FAQ
+- **Sidebar:**
+  - Other recommended cakes
+- **Footer**
 
-### 5. Checkout
-- **Form:** Address, contact info, shipping method, payment details (Stripe/PayPal), order review
+---
+### 3. Admin Novelty Cake Management
 
-### 6. Order Confirmation
-- Order summary, tracking info, continue shopping link
-
-### 7. Admin Dashboard
-- **Sidebar Navigation:** Products (Lashes & Nails), Orders, Customers, Analytics
-- **Main Area:** Product table, order table, analytics charts
-
-### 8. Shared Components
-- **Navbar:** Logo, "Shop Lashes", "Shop Nails", Cart icon, optional account/login
-- **Footer:** Standard, social icons, newsletter, legal links
+- **Top Nav**: Dashboard | Orders | Products | Novelty Cake | Reports
+- **Table/List:**
+  - Filter/search, bulk actions
+  - Columns: Image, Name, Status, Occasions, Price, Inventory, Dietary, Tags, Actions
+  - Add/Edit (drawer or modal): Fields for all variant, dietary, seasonal, personalization, SEO
+- **CSV/XLSX Import, Batch Edit tools**
+- **Validation/Warnings (inline, color-coded)**
 
 ---
 
-## UI Elements Checklist
-- Responsive navbar and mobile menu
-- Button styles: Primary, secondary, icon buttons
-- Product cards, rating stars, badges (New, Best Seller)
-- Filter dropdowns, toggles, search bar
-- Pagination
-- Cart drawer/mini cart
-- Modal for login/signup (if included)
-- Admin table and edit forms
+## UI Elements & Components
+- Navbar
+- Footer
+- Product Card
+- Filter Panel (Sidebar)
+- Sort Bar
+- Product Gallery Carousel
+- Personalization Form (conditional, supports photo & text)
+- Tags/Badges (Dietary, Bestseller, New, Out-of-Stock)
+- Variant Selector (flavor/size)
+- Review, Q&A Tabs
+- Wishlist/Add To Cart Buttons
+- Delivery Date Picker/Estimator
+- Admin Table, Bulk Actions, Import/Export
 
 ---
 
 ## Component Breakdown
-- **Navbar** (main navigation)
-- **Hero Section** (homepage)
-- **Category Tiles/Grid**
-- **ProductCard** (for grid/listing)
-- **ProductDetail** (detail info)
-- **FilterBar / Filters**
-- **CartDrawer / CartPage**
-- **CheckoutForm**
-- **TestimonialCarousel**
-- **NewsletterSignup**
-- **Footer** (global)
-- **Admin/ProductTable**
-- **Admin/OrderTable**
-- **Admin/AnalyticsDashboard**
+
+- **Navbar**: Logo, Main Nav, Cart, Account
+- **Hero/Category Header**: Category title, occasion graphic, tagline
+- **Filter Panel**: All filter groups, clear/reset
+- **Product Card**: Image, basic info, dietary tags, add button
+- **Product Detail: Gallery + Info**
+- **Personalization Form**: Only shown if product is personalizable
+- **Review/Q&A**
+- **Admin List/Table**: Fields, filtering, actions, batch tools
+- **Footer**: Company info, policy links, socials
 
 ---
 
-## Visual Sitemap (Mermaid)
+## Mermaid Diagrams
+
+### User Journey (Shopper)
 ```mermaid
-graph TD
-  Home --> Lashes[Shop Lashes]
-  Home --> Nails[Shop Nails]
-  Home --> Cart[Cart]
-  Lashes --> LProduct[Product Detail]
-  Nails --> NProduct[Product Detail]
-  LProduct --> Cart
-  NProduct --> Cart
-  Cart --> Checkout
-  Checkout --> OrderConf[Order Confirmation]
-  Home --> Admin[Admin Dashboard]
-  Admin --> ProdMgmt[Product Management]
-  Admin --> Orders[Order Management]
-  Admin --> Analytics
-  Home --> Account[Account]
-  Home --> Contact[Contact/FAQ]
+flowchart LR
+    A[Home] --> B[Shop]
+    B --> C[Novelty Cake Category]
+    C --> D[Apply Filters]
+    D --> E[View Cake Details]
+    E --> F[Personalize Cake?]
+    F -- Yes --> G[Add Message/Image]
+    F -- No --> H[Select Variant/Size]
+    G --> I[Cart]
+    H --> I[Cart]
+    I --> J[Checkout]
+```
+
+### Page Layout: Category
+```mermaid
+flowchart TD
+    NAV[Header/Navbar]
+    FLTR[Sidebar Filters]-->|left| GRID[Product Card Grid]
+    GRID-->|bottom| FOOTER[Footer]
+    NAV-->GRID
+    NAV-->FLTR
+    GRID-->FOOTER
 ```
 
 ---
 
-## Next Steps
-- Refine category filters for nails (shape, color, finish) in wireframes
-- Align product card imagery for both product lines
-- Create color tokens & design tokens as JSON if supporting design system
-- Add Figma/Canva links here (when available)
+## Supporting Files
+- See [Figma Draft Designs](https://www.figma.com/file/example-link-novelty-cake-designs) _(placeholder)_
+- [colors.json](./colors.json)
 
 ---
 
-*Ready for Product Manager review!*
+## Commit Info
+- Commit message: "Add high-level design for Product Manager review"
+
+---
+
+## Status
+**Design is ready for Product Manager review. Please confirm or request changes.**
