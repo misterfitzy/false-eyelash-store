@@ -132,3 +132,102 @@ graph TD
 ## 10. Change Log
 
 - v1.0: Initial product specification, 2026-02-21
+
+---
+
+## 11. Feature Extension: Diet Cabbage Coordinations
+
+**Goal:**  
+Introduce "Cabbage Coordinations" as a new filterable diet category, supporting both the shopper and admin experience with consistent accessibility and management features.
+
+---
+
+### 11.1 Functional Enhancements
+
+#### Shopper Experience
+
+- "Cabbage Coordinations" available as a diet filter in all meal plan and recipe search tools.
+- Curated cabbage-centric meal plans and recipes, with nutritional info, ingredients, and clear preparation steps.
+- Accessible, mobile-responsive pages and modals.
+- Actions: "Add to Plan", "Save for Later", full tagging support.
+
+#### Admin Experience
+
+- Complete CRUD access to "Cabbage Coordinations" diet plans and recipes from the admin dashboard.
+- Ability to bulk import and export cabbage-based content.
+- Apply "Featured" badge, manage visibility, and attach educational guides.
+
+---
+
+### 11.2 Data Model Update
+
+Additions/Updates to the existing model:
+
+```mermaid
+erDiagram
+    MealPlan ||--o{ DietCategory : contains
+    DietCategory {
+        string id PK
+        string name
+        string description
+        string imageUrl
+        bool featured
+    }
+    DietCategory ||--o{ Recipe : includes
+    Recipe {
+        string id PK
+        string dietCategoryId FK
+        string title
+        string description
+        string ingredients
+        string steps
+        string nutritionInfo
+        string imageUrl
+        string difficulty
+        string mealType
+    }
+```
+> New value:  
+> `DietCategory.name = "Cabbage Coordinations"`
+
+---
+
+### 11.3 User Stories
+
+- **As a user,** I can filter for cabbage-based meal plans and recipes.
+- **As a user,** I can add cabbage-based meals to my plan.
+- **As an admin,** I manage (add, edit, feature, remove) Cabbage Coordinations content from the existing dashboard.
+
+---
+
+### 11.4 Acceptance Criteria
+
+- [ ] "Cabbage Coordinations" selectable on all relevant UI filters/menus.
+- [ ] Recipes and meal plans visible/searchable and display with correct details.
+- [ ] Admin can fully manage Cabbage Coordinations content.
+- [ ] Accessibility, mobile support, and platform styling are maintained.
+
+---
+
+### 11.5 Information Architecture Update
+
+```mermaid
+graph TD
+    Dashboard --> MealPlan
+    MealPlan --> DietFilter["Diet Category Filter"]
+    DietFilter --> Cabbage["Cabbage Coordinations"]
+    Cabbage --> RecipeList["Cabbage-Based Recipes"]
+    Cabbage --> PlanList["Cabbage Meal Plans"]
+    Admin --> DietMgmt["Diet Management"]
+    DietMgmt --> CabbageAdmin["Manage Cabbage Coordinations"]
+```
+
+---
+
+### 11.6 Change Log
+
+- v1.1: Added Cabbage Coordinations diet category feature. (2026-02-21)
+
+---
+
+This addition is ready for design and implementation review.
