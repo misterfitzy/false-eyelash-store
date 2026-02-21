@@ -1,176 +1,176 @@
-# Product Specification: Novelty Earrings Category
-_Update for: `misterfitzy/false-eyelash-store`_
-_Spec Location: `specs/product-spec.md`_
-
----
+# Product Specification: Novelty Underwear
 
 ## 1. Overview
 
-Add **Novelty Earrings** as a core, shoppable, filterable product category to the store. Support full catalog and admin flows, extensibility, product data model integration, accessibility, and reporting.
+**Goal:**  
+Expand the false-eyelash-store platform to offer a new “Novelty Underwear” product category, supporting both unique/printed and standard underwear styles for women, men, and unisex shoppers. Ensure the new category is fully filterable, shoppable, and manageable via admin workflows.
 
 ---
 
-## 2. Catalog & Navigation Updates
+## 2. Catalog Structure & Navigation
 
-- **Top-level Category:** Add "Novelty Earrings" to the primary catalogue navigation.
-- **Menu Integration:** Include under Shop All and/or Accessories, as appropriate.
-- **Searchable:** Products in this category are indexed for store search and can be found by name, type, theme, material, or color.
+- Add "Novelty Underwear" as a primary or sub-category (configurable: could nest under Accessories or create as a standalone category).
+- Appears in the main/top-level catalog navigation and homepage highlights.
+- Fully integrated into sitewide search, filtering, and shop-by-category menus.
+- Enables "shop all underwear" and specialty sections (e.g., Valentine’s, Humorous Prints, Luxe Fabrics).
 
-**Mermaid Diagram: Catalog Structure**
+**Mermaid Diagram:**
 ```mermaid
 graph TD
-  Catalog["Shop All Products"]
-  FalseEyelashes
-  FalseNails
-  SheerStockings
-  Accessories
-  HairDye
-  Lipstick
-  PopSocks
-  LadiesFootballs
-  PinkTennisBalls
-  GlassGlitterballs
-  NoveltyEarrings
-
-  Catalog --> FalseEyelashes
-  Catalog --> FalseNails
-  Catalog --> SheerStockings
-  Catalog --> Accessories
-  Catalog --> HairDye
-  Catalog --> Lipstick
-  Catalog --> PopSocks
-  Catalog --> LadiesFootballs
-  Catalog --> PinkTennisBalls
-  Catalog --> GlassGlitterballs
-  Catalog --> NoveltyEarrings
+    A[Home] --> B[Shop by Category]
+    B --> C[False Eyelashes]
+    B --> D[False Nails]
+    B --> E[Sheer Stockings]
+    B --> F[Novelty Underwear]
+    F --> F1[Women's Underwear]
+    F --> F2[Men's Underwear]
+    F --> F3[Unisex/Universal]
+    F --> F4[Themes: Humorous, Luxe, Seasonal, Printed]
 ```
 
 ---
 
-## 3. Shopper Features & Filters
+## 3. Shopper Features
 
-**Shoppers can:**
-- Browse Novelty Earrings via dedicated landing page.
-- Filter and sort by:
-  - **Type:** Studs, Dangles, Hoops, Cuffs, Clip-ons, Sets
-  - **Theme:** Food, Animals, Holiday, Statement, Retro, Pop Culture, Custom/Text, Glitter/Gem, Other
-  - **Material:** Metal (Nickel-Free, Sterling Silver, Gold-tone), Plastic, Resin, Acrylic, Wood, Fabric
-  - **Colour:** Swatches, multi-select
-  - **Finish:** Matte, Gloss, Glitter, Pearl, Holographic
-  - **Brand**
-  - **Closure:** Post, Hook, Clip-on, Magnetic
-  - **Hypoallergenic:** Yes/No
-  - **Featured/Trending**
-  - **Price Range**
-  - **Customer Ratings**
-  - **Availability:** In stock, pre-order, out of stock
-- Use quick view, add to wishlist/cart, and see live inventory status.
-- View multiple images, video, 360° spins, and badges (e.g., Hypoallergenic, New).
+- Browse by category, gender, and “theme” (e.g., humorous, romantic, quirky, holiday).
+- Advanced Filtering:
+    - Size (XS–XXL, numeric by brand & market region)
+    - Style (boxer, brief, thong, bikini, hipster, trunk, etc.)
+    - Material (cotton, silk, lace, spandex, novelty fabrics)
+    - Print/Design (solid, printed, embroidered, novelty graphics)
+    - Color(s)
+    - Brand
+    - Price
+    - Rating
+    - Stock status
+    - Features (tagless, seamless, moisture-wicking, eco-friendly, limited edition, etc.)
+- Sorting: price, popularity, new, top-rated, in stock.
+- Product Detail: size chart, multiple images/zoom, materials, care instructions, fit notes, model photos, “shop the look”, related items.
+- Variant selector for size, color, print, or “edition.”
+- Add to cart, wishlist, share, quick view.
+- Live stock indication—variant-specific.
+- Reviews, Q&A, cross-sell suggestions.
+- Accessibility: keyboard navigation, contrast, alt text, ARIA, error states, WCAG 2.1 AA.
 
 ---
 
-## 4. Product Data Model (Example JSON)
+## 4. Admin Features
 
+- Full CRUD (create/read/update/delete) controls for novelty underwear SKUs.
+- Bulk product import/export and variant/batch editing (spreadsheet-like).
+- Tagging for seasons/promotions/themes (e.g., “Pride”, “Christmas”, “Shimmer”, “Glow in the Dark”).
+- Deactivate/discontinue individual products/variants.
+- Inventory and sales reporting.
+- Validation for required fields: size, category, images, pricing, variant options, accessibility metadata.
+- Rapid-edit for pricing, inventory, tags.
+- Asset management for high-res/compliance-ready images.
+
+---
+
+## 5. Data Model
+
+**Example (JSON):**
 ```json
 {
-  "id": "e12345",
-  "category": "Novelty Earrings",
-  "name": "Glitter Donut Dangle Earrings",
-  "brand": "FunBijoux",
-  "type": "Dangles",
-  "theme": ["Food", "Glitter"],
-  "materials": ["Polymer Clay", "Nickel-Free Metal"],
-  "colour": ["Pink", "White", "Sprinkles"],
-  "finish": "Gloss",
-  "closure": "Hook",
-  "hypoallergenic": true,
-  "description": "Whimsical donut-shaped dangle earrings with a glossy finish, lightweight and hypoallergenic.",
+  "id": "nu-001",
+  "name": "Novelty Printed Boxer Shorts",
+  "category": "Novelty Underwear",
+  "subcategory": "Men's Underwear",
+  "brand": "FunWear",
+  "material": ["Cotton", "Spandex"],
+  "styles": ["Boxer", "Printed"],
+  "print_type": "Humorous - Pizza Party",
+  "color": ["Blue", "Red", "Multi"],
+  "sizes": ["S", "M", "L", "XL"],
+  "features": ["Tagless", "Machine-Washable", "Seasonal"],
+  "price": 12.99,
+  "variants": [
+    {
+      "size": "M",
+      "color": "Blue",
+      "sku": "nu-001-blu-m",
+      "stock": 24
+    },
+    {
+      "size": "L",
+      "color": "Red",
+      "sku": "nu-001-red-l",
+      "stock": 5
+    }
+  ],
   "images": [
-    "/images/earrings/donuts_1.jpg",
-    "/images/earrings/donuts_2.jpg"
+    {
+      "url": "https://cdn.site.com/products/nu-001/main.jpg",
+      "alt": "Novelty boxer with pizza print"
+    }
   ],
-  "videos": [
-    "/videos/earrings/donuts_demo.mp4"
-  ],
-  "badges": ["New Arrival", "Hypoallergenic"],
-  "price": 8.99,
-  "in_stock": 22,
+  "description": "Lightweight cotton boxers with an all-over pizza print. Elasticated and tag-free for comfort.",
+  "care_instructions": "Machine wash cold. Tumble dry low.",
   "rating": 4.7,
-  "reviews_count": 17,
-  "care": "Avoid water. Store in jewelry box.",
-  "returnable": true,
-  "tags": ["gift", "valentines"]
+  "reviews_count": 52,
+  "tags": ["Humorous", "Printed", "Men's", "Valentine's Day"]
 }
 ```
 
 ---
 
-## 5. Admin Features
+## 6. Acceptance Criteria
 
-- **Full CRUD:** Create, edit, remove Novelty Earring products.
-- **Bulk Import/Export:** Support inventory management for new SKUs via CSV/Excel.
-- **Batch Editing:** Edit price, stock, attributes for multiple items.
-- **Data Validation:** Enforce correct type, material, and naming formats.
-- **Tag & Feature for Promotions:** Highlight new arrivals, bestsellers.
-- **Sales & Inventory Reports:** Filterable for Novelty Earrings.
+**Shopper**
+- Can find “Novelty Underwear” in main navigation and output in “shop all” and search.
+- Can filter & sort by all listed filters.
+- Product page shows images (with alt text), variants, size/fit info, care, price, reviews, and related products.
+- Can add to cart, wishlist, and see live stock.
+- Checkout & account flows are fully compatible.
 
----
+**Admin**
+- Can create/edit/delete underwear products/variants.
+- Can bulk import, tag, batch-edit, and filter.
+- Can manage inventory, deactivate SKUs, and see sales/inventory reports.
 
-## 6. Accessibility & UX
-
-- Images with alt text for product/photo/video assets.
-- Sufficient contrast, large clickable filter controls, sticky filter panel (desktop), filter drawer (mobile).
-- Full keyboard navigation for catalogs and product details.
-- ARIA labels for custom controls.
-- WCAG 2.1 AA compliance for all earrings-related UI.
-- Upsell/cross-sell modules for related earrings and accessories.
-- Quick-add or wishlist functionality.
+**Accessibility**
+- Meets WCAG 2.1 AA
+- Keyboard accessible, labeled fields/images, proper tab order, errors flagged clearly.
 
 ---
 
 ## 7. User Stories
 
 **Shopper**
-- As a shopper, I can browse and filter novelty earrings by type, theme, and colour.
-- As a customer, I can filter hypoallergenic styles for sensitive skin.
-- As a shopper, I can see detailed images/videos before purchase.
-- As a customer, I can combine earrings with other items in my cart and checkout together.
+- As a shopper, I want to browse and filter novelty underwear by size, style, and print/theme so I can quickly find what suits my preferences.
+- As a user, I want to view detailed images and info for each product so I can make an informed purchase.
+- As a customer, I want to add underwear to my cart and purchase seamlessly across categories.
 
 **Admin**
-- As an admin, I can bulk upload or edit SKUs with all novelty earring attributes.
-- As an admin, I can filter and report on earrings inventory or sales.
-- As an admin, I can tag earrings for "New Arrival" and "Promotions." 
+- As an admin, I want to manage all attributes of underwear products, including print/theme tags and variants, so I can keep the catalog accurate and engaging.
+- As an admin, I want to disable or promote specialty underwear for sales and campaigns.
 
 ---
 
-## 8. Acceptance Criteria
+## 8. Accessibility & Compliance
 
-- [ ] Novelty Earrings category visible in catalog and navigation.
-- [ ] Shopper can filter, sort, purchase, add to wishlist/cart, and see live inventory.
-- [ ] Admin can CRUD single and multiple earring SKUs, import/export, and report.
-- [ ] Mixed-category cart/checkout is seamless.
-- [ ] Meets WCAG 2.1 AA accessibility for all earrings UI.
-- [ ] Product data model supports all earring-specific attributes.
+- All features, forms, and product cards must be fully keyboard-accessible and readable by screen readers.
+- Alt text for all imagery, ARIA where needed, high-contrast, and error states for forms.
+- All catalog, detail, and admin flows must meet or exceed WCAG 2.1 AA.
 
 ---
 
 ## 9. Next Steps
 
-- **UI/UX:** Update wireframes for earrings (catalog, filters, PDP, cart).
-- **Dev:** Implement as per above and validate with acceptance tests.
-- **Design:** Create icons/images for earrings.
-- **Content:** Write product detail, acquire demo media.
-- **QA:** Confirm accessibility and filtering/reporting coverage.
+1. Confirm catalog taxonomy & placement (“Novelty Underwear” as top-level or sub-category).
+2. Update wireframes for navigation, catalog, product detail, and admin CRUD/batch-edit screens.
+3. Extend product data model and filtering in the codebase.
+4. Implement admin workflows for batch input/edit of underwear products.
+5. Validate compliance/accessibility.
+6. QA user flows for admin/shopper roles.
+7. Plan launch campaign and highlight section for new category.
 
 ---
 
 ## 10. Change History
-- 2026-02-21: Added Novelty Earrings as a core, filterable product category
+
+- **2026-02-21**: Initial specification for Novelty Underwear category created.
 
 ---
 
-## 11. References
-- [GitHub: misterfitzy/false-eyelash-store](https://github.com/misterfitzy/false-eyelash-store)
-- Spec location: `specs/product-spec.md`
-
-_This completes the formal integration of "Novelty Earrings" as a category in your e-commerce product spec._
+### Ready for design review and development.
